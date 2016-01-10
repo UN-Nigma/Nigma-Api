@@ -1,0 +1,6 @@
+node_modules/
+.idea
+images/
+npm-debug.log
+scorm.zip
+questions/

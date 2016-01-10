@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/samples.css">
+        <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+        <script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/2.2-latest/MathJax.js?config=TeX-AMS_HTML">
+
+</script>
+    </head>
+    <body>
+        <!-- Container where should render the question-formulation -->
+        <section id="Question" class="container-fluid">
+           <article class="col-xs-8 col-xs-offset-2">
+               <p id="statement" class="statement">  </p>
+               <p id="infoVars"></p>
+
+                <!-- Container of inputs -->
+               <article id="inputResponses"></article>
+
+               <h4> 
+                    <!--<input id="inputData" class="form-control" type="text" autofocus>-->
+                    <a id="sendData" style="margin-top: 15px" class="btn btn-primary" >Enviar</a>
+                </h4>
+           </article>
+        </section>
+
+
+        <!-- Modal that evalue the response -->
+        <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="myModalLabel">Resultados</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div id="Answer" class="alert  col-xs-12"></div>
+                            <div id="feedback" class=" col-xs-12"></div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <a id="aceptar" href="" class="btn btn-primary">Aceptar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.0.min.js"><\/script>')</script>
+        <script src="js/vendor/bootstrap.min.js"></script>
+        <script defer src="js/vendor/math.min.js"></script>
+        <script src="js/api.js"></script>
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/mathjs/2.2.0/math.min.js" type="text/javascript"></script>
+        <script src="js/xml-question.js"></script>
+        <script src="js/random-generator.js"></script>
+        <script src="js/render.js"></script>
+        <script src="js/printer.js"></script>
+    </body>
+</html>
