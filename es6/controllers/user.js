@@ -70,7 +70,7 @@ module.exports = {
         user.pass = undefined;
         user.folders = undefined;
 
-        token = jwt.sign(user, "zVTcnZgLTWoNxAidDbOwQQuWfKRwVC");
+        var token = jwt.sign(user, "zVTcnZgLTWoNxAidDbOwQQuWfKRwVC");
 
         res.status(200).json({ok: true, token: token});
       }
@@ -99,7 +99,7 @@ module.exports = {
       user.pass = undefined;
       user.folders = undefined;
 
-      token = jwt.sign(user, "zVTcnZgLTWoNxAidDbOwQQuWfKRwVC");
+      var token = jwt.sign(user, "zVTcnZgLTWoNxAidDbOwQQuWfKRwVC");
 
       res.status(200).json({
         ok: true,
@@ -111,19 +111,19 @@ module.exports = {
   getInfo: function (req, res) {
     var user = req.user;
 
-    User.getById(user._id, 'name email photo', function (err, user) {
-      if (err) {
-        return res.status(400).json({
-          ok: false,
-          message: err.message
+    User.getById(user._id, 'name email photo')
+      .then(function(user){
+        res.status(200).json({
+          ok: true,
+          user: user
         });
-      }
-
-      res.status(200).json({
-        ok: true,
-        user: user
+      })
+      .catch(function(error) {
+        res.status(400).json({
+          ok: false,
+          message: error.message
+        });
       });
-    });
   },
 
   sharedFolder: function (req, res) {
@@ -199,38 +199,24 @@ module.exports = {
 
   getRootsFolders: function (req, res) {
     var userId = req.user._id;
-
-    async.waterfall(
-      [
-        function (next) {
-          User.getById(userId, 'root_folder root_shared_folder', next);
-        },
-        function (user, next) {
-          Folder.getAllData(user.root_folder, function (err, rootFolder) {
-            next(err, rootFolder, user);
+    User.getById(userId, 'root_folder root_shared_folder')
+      .then(function(user) {
+        var promises = [Folder.getById(user.root_folder), Folder.getById(user.root_shared_folder)]
+        Promise.all(promises).then(function(folders) {
+          res.status(200).json({
+             ok: true,
+             root_folder: folders[0],
+             root_shared_folders: folders[1]
           });
-        },
-        function (rootFolder, user, next) {
-          Folder.getAllData(user.root_shared_folder, function (err, sharedFolder) {
-            next(err, rootFolder, sharedFolder);
-          });
-        }
-      ],
-      function (err, rootFolder, sharedFolder) {
-        if (err) {
-          return res.status(400).json({
-            ok: false,
-            message: err.message
-          });
-        }
-
-        res.status(200).json({
-          ok: true,
-          root_folder: rootFolder,
-          root_shared_folders: sharedFolder
         });
-      }
-    );
+      })
+      .catch(function(error) {
+        console.error(error);
+        res.status(400).json({
+          ok: false,
+          message: err.message
+        });
+      })
   }
 
 };

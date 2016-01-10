@@ -12,17 +12,17 @@ var express = require('express'),
 
 app.use(cors());
 
-/* mongoose.connect("mongodb://jonathanvm13:iM}fM7&k^O}%X@ds047692.mongolab.com:47692/nigma", function (err, res) {
+ mongoose.connect("mongodb://alexsotocx:qwe123@ds061454.mongolab.com:61454/nigma2_0", function (err, res) {
+  if (err) console.log("Mongoose database connection error")
+  else    console.log("Mongoose database connection succeeded")
+});
+
+
+/*mongoose.connect("mongodb://localhost:27017/nigma", function (err, res) {
   if (err) console.log("Mongoose database connection error")
   else    console.log("Mongoose database connection succeeded")
 });
 */
-
-mongoose.connect("mongodb://localhost:27017/nigma", function (err, res) {
-  if (err) console.log("Mongoose database connection error")
-  else    console.log("Mongoose database connection succeeded")
-});
-
 var models = require('./models/question')(app, mongoose);
 models = require('./models/user')(app, mongoose);
 models = require('./models/folder')(app, mongoose);
@@ -32,8 +32,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(jwt({ secret: 'zVTcnZgLTWoNxAidDbOwQQuWfKRwVC'}).unless({path: ['/api/users/login', '/api/users', /\/static/]}));
-app.use('/static', express.static('images'));
-app.use('/static', express.static('questions'));
+app.use('/static', express.static('../images'));
+app.use('/static', express.static('../questions'));
 
 
 require('./routes/config.js')(app);
@@ -50,7 +50,8 @@ app.use(function (req, res, next) {
 // development error handler will print stacktrace
 if (app.get('env') === 'development') {
   app.use(function (err, req, res, next) {
-    res.status(err.status || 500).jsonp({ok: false, message: err.message, error: err});
+    console.log(err.stack);
+    res.status(err.status || 500).jsonp({ok: false, message: err.message, error: err.stack});
   });
 }
 

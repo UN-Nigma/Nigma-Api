@@ -3,6 +3,8 @@ var mongoose = require('mongoose'),
   validate = require('mongoose-validator'),
   Schema = mongoose.Schema;
 
+mongoose.Promise = global.Promise;
+
 var user = Schema(
   {
     email: {type: String, required: true, unique: true, trim: true},
@@ -35,11 +37,11 @@ user.path('email').validate(function (value, next) {
 user.statics = {
 
   getById: function (userId, fields, cb) {
-    this.findById(userId, fields, cb);
+    return this.findById(userId, fields).exec();
   },
 
   getByEmail: function (email, fields, cb) {
-    this.findOne({email: email}, fields, cb);
+    return this.findOne({email: email}, fields).exec();
   }
 
 };
