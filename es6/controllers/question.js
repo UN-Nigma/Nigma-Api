@@ -23,10 +23,7 @@ module.exports = {
 			.then(function(question) {
 				res.status(200).json({
 					ok: true,
-					question: {
-						_id: question._id,
-						name: question.name
-					}
+					question: question
 				});
 			})
 			.catch(function(error) {

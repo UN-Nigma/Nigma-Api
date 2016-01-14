@@ -39,10 +39,7 @@ module.exports = {
       .then(function(folder) {
         res.status(200).json({
           ok: true,
-          folder: {
-            _id: folder._id,
-            name: folder.name
-          }
+          folder: folder
         });
       })
       .catch(function(error) {
