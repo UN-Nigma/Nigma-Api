@@ -2,7 +2,7 @@ var Scorm = require('../controllers/scorm'),
     UserCtrl = require('../controllers/user'),
     QuestionCtrl = require('../controllers/question'),
     FolderCtrl = require('../controllers/folder');
-    
+
 var routes = [
 
   //Scorm
@@ -31,7 +31,8 @@ var routes = [
   {path: '/users/login',                 httpMethod: 'POST',   middleware: [UserCtrl.login]},
   {path: '/users/questions/:questionid', httpMethod: 'POST',   middleware: [UserCtrl.sharedQuestion]},
   {path: '/users/folders/:folderid',     httpMethod: 'POST',   middleware: [UserCtrl.sharedFolder]},
-  {path: '/users/folders',               httpMethod: 'GET',    middleware: [UserCtrl.getRootsFolders]},
+  {path: '/users/folders',               httpMethod: 'GET',    middleware: [UserCtrl.getUserFolder]},
+  {path: '/users/folders/shared-with-me',               httpMethod: 'GET',    middleware: [UserCtrl.getUserSharedFolder]}
 
 ];
 
