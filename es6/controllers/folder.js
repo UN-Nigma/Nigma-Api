@@ -1,102 +1,118 @@
 var mongoose = require('mongoose'),
-  Folder = mongoose.model('folder'),
-  User = mongoose.model('user'),
-  Question = mongoose.model('question'),
-  Q = require('q'),
-  uniqid = require('uniqid'),
-  async = require('async');
+	Folder = mongoose.model('folder'),
+	User = mongoose.model('user'),
+	Question = mongoose.model('question'),
+	Q = require('q'),
+	uniqid = require('uniqid'),
+	async = require('async');
 
 
 module.exports = {
 
-  create: function (req, res) {
-    var folderName = req.body.folder.name;
-    var parentFolderId = req.params.folderid;
-    var user = req.user;
-    Folder.getById(parentFolderId)
-      .then(function(parentFolder) {
-        var newFolder = new Folder({
-          name: folderName,
-          owner: user._id,
-          parent_folder: parentFolder._id,
-          users: parentFolder.users //The new folder have the same users  acces from her parent
-        });
-        return newFolder.save();
-      })
-      .then(function(folder) {
-        return new Promise(function(resolve, reject) {
-          Folder.addFolder(parentFolderId, folder._id, function (err, rows) {
-            if(err){
-              reject(err);
-            } else if (rows.n == 0) {
-              reject(new Error("Parent folder was not update"));
-            } else {
-              resolve(folder)
-            }
-          });
-        })
-      })
-      .then(function(folder) {
-        res.status(200).json({
-          ok: true,
-          folder: folder
-        });
-      })
-      .catch(function(error) {
-        res.status(400).json({
-            ok: false,
-            message: error.message
-          });
-      })
-  },
+	create: function (req, res) {
+		var folderName = req.body.folder.name;
+		var parentFolderId = req.params.folderid;
+		var user = req.user;
+		Folder.getById(parentFolderId, "_id")
+			.then(function(parentFolder) {
+				var newFolder = new Folder({
+					name: folderName,
+					owner: user._id,
+					parent_folder: parentFolder._id,
+					users: parentFolder.users //The new folder have the same users  acces from her parent
+				});
+				return newFolder.save();
+			})
+			.then(function(folder) {
+				return new Promise(function(resolve, reject) {
+					Folder.addFolder(parentFolderId, folder._id, function (err, rows) {
+						if(err){
+							reject(err);
+						} else if (rows.n == 0) {
+							reject(new Error("Parent folder was not update"));
+						} else {
+							resolve(folder)
+						}
+					});
+				})
+			})
+			.then(function(folder) {
+				res.status(200).json({
+					ok: true,
+					folder: folder
+				});
+			})
+			.catch(function(error) {
+				res.status(400).json({
+						ok: false,
+						message: error.message
+					});
+			})
+	},
 
-  update: function (req, res) {
-    var folder = req.body.folder,
-      folderId = req.params.folderid;
+	get: function(req, res) {
+		var folderId = req.params.folderid;
+		var user = req.user;
+		Folder.getById(folderId, "_id name parent_folder folders questions").then(function(folder) {
+			return res.status(200).json({
+				ok: true,
+				folder: folder
+			});
+		}).catch(function(error) {
+			return res.status(400).json({
+				ok: false,
+				message: error.message
+			});
+		})
+	},
 
-    Folder.updateName(folderId, folder.name, function (err, rows) {
-      if (err) {
-        return res.status(400).json({
-          ok: false,
-          message: err.message
-        });
-      }
+	update: function (req, res) {
+		var folder = req.body.folder,
+			folderId = req.params.folderid;
 
-      if (rows.n == 0) {
-        return res.status(400).json({
-          ok: false,
-          message: "The folder does not exist"
-        });
-      }
+		Folder.updateName(folderId, folder.name, function (err, rows) {
+			if (err) {
+				return res.status(400).json({
+					ok: false,
+					message: err.message
+				});
+			}
 
-      res.status(200).json({
-        ok: true
-      });
-    });
-  },
+			if (rows.n == 0) {
+				return res.status(400).json({
+					ok: false,
+					message: "The folder does not exist"
+				});
+			}
 
-  delete: function (req, res) {
-    var folderId = req.params.folderid;
+			res.status(200).json({
+				ok: true
+			});
+		});
+	},
 
-    Folder.deleteById(folderId, function (err, rows) {
-      if (err) {
-        return res.status(400).json({
-          ok: false,
-          message: err.message
-        });
-      }
+	delete: function (req, res) {
+		var folderId = req.params.folderid;
 
-      if (rows.n == 0) {
-        return res.status(400).json({
-          ok: false,
-          message: "The folder does not exist"
-        });
-      }
+		Folder.deleteById(folderId, function (err, rows) {
+			if (err) {
+				return res.status(400).json({
+					ok: false,
+					message: err.message
+				});
+			}
 
-      res.status(200).json({
-        ok: true
-      });
-    });
-  }
+			if (rows.n == 0) {
+				return res.status(400).json({
+					ok: false,
+					message: "The folder does not exist"
+				});
+			}
+
+			res.status(200).json({
+				ok: true
+			});
+		});
+	}
 
 };

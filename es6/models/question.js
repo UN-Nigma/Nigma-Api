@@ -11,18 +11,18 @@ var Question = mongoose.Schema(
 		formulation: String,
 		metadata: Schema.Types.Mixed,
 		name: String,
-		parent_folder: {type: String, required: true, ref: 'folder'},
-		owner: {type: String, required: true, ref: 'user'},
-		users: [{type: String, required: true, ref: 'user'}],
+		parent_folder: {type: Schema.Types.ObjectId, required: true, ref: 'folder'},
+		owner: {type: Schema.Types.ObjectId, required: true, ref: 'user'},
+		users: [{type: Schema.Types.ObjectId, required: true, ref: 'user'}],
 		images: [{type: String}],
 		deleted: {type: Boolean, required: true, default: false},
-		update_at: Date,
+		updated_at: Date,
 		created_at: Date
 	}
 );
 
 Question.pre('save', function(next) {
-	this.update_at = new Date();
+	this.updated_at = new Date();
 	if(this.isNew) {
 		this.created_at = new Date();
 	}

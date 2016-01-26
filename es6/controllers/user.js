@@ -22,7 +22,9 @@ module.exports = {
 		};
 
 		var rootFolder = new Folder();
+		rootFolder.name = "Mis preguntas";
 		var rootSharedFolder = new Folder();
+		rootSharedFolder.name = "Compartidos conmigo";
 
 		var user = new User({
 			email: req.body.user.email,
