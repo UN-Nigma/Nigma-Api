@@ -152,5 +152,14 @@ Question.statics.deleteById = function (questionId, helper) {
 			})
 	});
 };
+
+Question.statics.getById = function (questionId, fields) {
+	if(fields != undefined && fields != null)
+		return this.findOne({_id: questionId, deleted: false}, fields).exec();
+	else
+		return this.findOne({_id: questionId, deleted: false}).exec();
+
+};
+
 Question = mongoose.model('question', Question);
 module.exports = Question;

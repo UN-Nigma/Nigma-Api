@@ -23,6 +23,7 @@ var routes = [
   {path: '/questions/:questionid/name',  httpMethod: 'PUT',    middleware: [QuestionCtrl.updateQuestion]},
   {path: '/questions/:questionid/data',  httpMethod: 'PUT',    middleware: [QuestionCtrl.setData       ]},
   {path: '/questions/:questionid',       httpMethod: 'DELETE', middleware: [QuestionCtrl.deleteQuestion]},
+  {path: '/questions/:questionid',       httpMethod: 'GET', middleware: [QuestionCtrl.getQuestion]},
   {path: '/questions/:questionid/variables/validate',       httpMethod: 'POST', middleware: [QuestionCtrl.validateVariables]},
   {path: '/questions/:questionid/answers/validate',       httpMethod: 'POST', middleware: [QuestionCtrl.validateAnswer]},
 

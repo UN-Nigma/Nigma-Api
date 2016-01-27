@@ -32,7 +32,23 @@ module.exports = {
 					message: error.message
 				});
 			})
-},
+	},
+
+	getQuestion(req, res) {
+		var user = req.user;
+		var questionId = req.params.questionid;
+		Question.getById(questionId).then(function(question) {
+			res.status(200).json({
+				ok: true,
+				question: question
+			});
+		}).catch(function(error) {
+			res.status(400).json({
+				ok: false,
+				error: erorr.message
+			});
+		})
+	},
 
 updateQuestion(req, res) {
 	var question = req.body.question;
