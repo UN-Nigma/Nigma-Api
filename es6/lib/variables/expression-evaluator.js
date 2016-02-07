@@ -6,7 +6,7 @@ module.exports = {
     var output = {
       error: false,
       possibleValue: null,
-      messages: []
+      message: ""
     }
     try {
       var scope = {};
@@ -26,9 +26,9 @@ module.exports = {
     } catch(exception) {
       output.error = true;
       if(exception.message != "La expresión no es evaluable")
-        output.messages.push("La expresión no está bien formada");
+        output.message = "La expresión no está bien formada";
       else
-        output.messages.push(exception.message);
+        output.message =  exception.message;
     }
     return output;
 
@@ -37,7 +37,7 @@ module.exports = {
   isEvaluable(expression, variables) {
 
     if(expression == null || expression == ""){
-      return {error: false, messages: []};
+      return {error: false, message: []};
     }
     expression = expression.toString();
     var evaluableVariables = Variable.retrieveEvaluableVariables(variables);
@@ -49,7 +49,7 @@ module.exports = {
     } else {
       return {
         error: true,
-        messages: ["La expresión puede contener variables no definidas o no evaluables"]
+        message: "La expresión puede contener variables no definidas o no evaluables"
       }
     }
   }

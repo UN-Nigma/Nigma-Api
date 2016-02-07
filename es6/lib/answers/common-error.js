@@ -5,13 +5,15 @@ class CommonError {
     this.message = "";
   }
 
-  isValid(variables, answerNames) {
+  isValid(variables, answerNames, errorIndex) {
     var output = {error: false, messages: []};
     for(var j = 0; j < answerNames.length; j++) {
       var answerName = answerNames[j];
       var validation = ExpressionEvaluator.isEvaluable(this.values[answerName], variables);
       output.error = output.error || validation.error;
-      output.messages = output.messages.concat(validation.messages);
+      if(validation.error){
+      	output.messages = output.messages.concat({route: `commonErrors.${errorIndex}.values.${answerName}`, message: validation.message});
+      }
     }
     return output;
   }

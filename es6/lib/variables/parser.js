@@ -56,6 +56,7 @@ var VariableParser = {
           errors.push(`Error en la linea ${j + 1}: ${validationOutput.message}`);
           break;
         } else {
+        	variable.parseCode();
           variables.push(variable);
         }
       }
@@ -111,7 +112,7 @@ var VariableParser = {
         variables: validationOutput.variables,
         values: validationOutput.results,
         errors: []
-      };  
+      };
     } else {
       return {
         ok: false,

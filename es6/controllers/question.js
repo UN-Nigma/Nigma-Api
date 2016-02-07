@@ -38,6 +38,7 @@ module.exports = {
 		var user = req.user;
 		var questionId = req.params.questionid;
 		Question.getById(questionId).then(function(question) {
+			question.answer = question.answer || new Answer();
 			res.status(200).json({
 				ok: true,
 				question: question
@@ -115,15 +116,16 @@ deleteQuestion(req, res) {
 validateVariables(req, res) {
 	var variableText = req.body.variables.text;
 	var questionId = req.params.questionid;
-	var data = {}
-	data["variables"] = variableText
+	var data = {variables: variableText};
 	var output = VariableParser.validate(variableText);
-	QuestionHelper.updateFields(questionId, data, function (err, rows) {
-		if (err) {
-			console.log("An error has ocurred", err);
-		}
-	});
-	res.status(200).json(output);
+	Question.updateFields(questionId, data).then(function(question) {
+		res.status(200).json(output);
+	}).catch(function(error) {
+		res.status(400).json({
+			ok: false,
+			message: error.message
+		});
+	})
 },
 
 validateAnswer(req, res) {
@@ -134,12 +136,14 @@ validateAnswer(req, res) {
 	var data = {}
 	data["variables"] = variableText
 	data["answer"] = answer
-	QuestionHelper.updateFields(questionId, data, function (err, rows) {
-		if (err) {
-			console.log("An error has ocurred", err);
-		}
-	});
-	res.status(200).json(output);
+	Question.updateFields(questionId, data).then(function(question) {
+		res.status(200).json(output);
+	}).catch(function(error) {
+		res.status(400).json({
+			ok: false,
+			message: error.message
+		});
+	})
 }
 
 

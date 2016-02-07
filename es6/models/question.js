@@ -2,15 +2,17 @@
 var mongoose = require('mongoose'),
 	async = require('async'),
 	Schema = mongoose.Schema,
-	Folder = require('./folder');
+	Folder = require('./folder'),
+	QuestionLib = require('../lib/answers/answer');
 
 var Question = mongoose.Schema(
 	{
+		name: {type: String, required: true},
+		type: {type: String, default: "Complete", required: true},
 		answer: Schema.Types.Mixed,
 		variables: String,
 		formulation: String,
 		metadata: Schema.Types.Mixed,
-		name: String,
 		parent_folder: {type: Schema.Types.ObjectId, required: true, ref: 'folder'},
 		owner: {type: Schema.Types.ObjectId, required: true, ref: 'user'},
 		users: [{type: Schema.Types.ObjectId, required: true, ref: 'user'}],
@@ -25,6 +27,24 @@ Question.pre('save', function(next) {
 	this.updated_at = new Date();
 	if(this.isNew) {
 		this.created_at = new Date();
+	}
+	var answer = this.answer;
+	for(var i = 0; i < answer.correctValues.length; i++) {
+		var correctValue = answer.correctValues[i];
+		for(var key in correctValue) {
+			if(answer.names.indexOf(key) == -1) {
+				delete correctValue[key];
+			}
+		}
+	}
+
+	for(var i = 0; i < answer.commonErrors.length; i++) {
+		var commonError = answer.commonErrors[i].values;
+		for(var key in commonError) {
+			if(answer.names.indexOf(key) == -1) {
+				delete commonError[key];
+			}
+		}
 	}
 	next();
 });
@@ -49,7 +69,7 @@ Question.statics.createQuestion = function (questionName, user, parentFolderId, 
 					parent_folder: parentFolder._id,
 					users: parentFolder.users,
 					variables: "",
-					answer: {},
+					answer: new QuestionLib(),
 					formulation: "",
 					metadata: {}
 				})
