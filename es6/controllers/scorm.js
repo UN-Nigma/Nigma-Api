@@ -61,45 +61,6 @@ module.exports = {
     })
   },
 
-  preview: function (req, res) {
-    var question = req.body.question;
-    var questionId = req.params.questionid;
-    QuestionHelper.updateData(questionId, question, function (err, rows) {
-      if (err) {
-        return res.status(400).json({
-          ok: false,
-          message: err.message
-        });
-      }
-      var answer = question.answer;
-      var variableText = question.variables;
-      var output = Answer.validateAnswer(answer, variableText);
-      question.answer = output.answer;
-      question.variables = {
-      	text:  variableText,
-      	variables: output.variables
-      }
-      if(output.ok) {
-      	var route = "../../questions/" + questionId + "/js/xml-question.js";
-      	var data = "var question = " + JSON.stringify(question) + "; question = JSON.parse(question);window.question = window.question || question;";
-      	fs.writeFile(path.join(__dirname, route), data, function (err) {
-      	  if (err) {
-      	    console.log(err.stack);
-      	    return res.status(400).jsonp({ok: false, message: err});
-      	  }
-
-      	  res.status(200).jsonp({ok: true, url: Config.apiUrl + "/static/" + questionId + "/launch.html"});
-      	});
-      } else {
-      	res.status(400).json({
-      		ok: false
-      	})
-      }
-
-
-    });
-  },
-
   Download: function (req, res) {
     var questionId = req.params.questionid;
     var file = "./questions/" + questionId + ".zip";

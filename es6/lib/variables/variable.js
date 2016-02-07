@@ -10,7 +10,6 @@ class Variable {
   }
 
   validName(currentVariables, name) {
-  	console.log("<<<<<<<<<<<<", currentVariables, "      <><<<<>>>   ", name)
   	return !(currentVariables.indexOf(name) != -1);
   }
 

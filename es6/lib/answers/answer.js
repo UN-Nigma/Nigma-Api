@@ -95,7 +95,7 @@ class Answer {
 		codeText.push(`response = "Incorrecto!";`);
 		codeText.push(`answerError = true;`);
 		codeText.push("}");
-		return this.code = codeText;
+		return codeText;
 	}
 
 	static createFromResponse(jsonAnswer) {
@@ -115,10 +115,12 @@ class Answer {
 			var validationOutput = VariableParser.validate(variableText);
 			if(validationOutput.errors.length == 0) {
 				var variables = validationOutput.variables;
-				validationOutput = answer.isValid(validationOutput.variables);
+				validationOutput = answer.isValid(variables);
 				return {
 					ok: !validationOutput.error,
 					errors: validationOutput.messages,
+					answer: answer,
+					variables: variables
 				};
 			} else {
 				return {

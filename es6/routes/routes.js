@@ -7,7 +7,6 @@ var routes = [
 
   //Scorm
   {path: '/questions/:questionid/scorms',  httpMethod: 'POST',   middleware: [Scorm.zipScorm]},
-  {path: '/questions/:questionid/scorms/preview',  httpMethod: 'PUT',    middleware: [Scorm.preview]},
   {path: '/questions/:questionid/scorms',  httpMethod: 'GET',    middleware: [Scorm.Download]},
   {path: '/questions/:questionid/scorms/uploadfiles',   httpMethod: 'POST',   middleware: [Scorm.uploadFiles]},
 
@@ -20,10 +19,10 @@ var routes = [
 
   //Question
   {path: '/folders/:folderid/questions', httpMethod: 'POST',   middleware: [QuestionCtrl.createQuestion]},
-  {path: '/questions/:questionid/name',  httpMethod: 'PUT',    middleware: [QuestionCtrl.updateQuestion]},
-  {path: '/questions/:questionid/data',  httpMethod: 'PUT',    middleware: [QuestionCtrl.setData       ]},
+  {path: '/questions/:questionid/data',  httpMethod: 'PUT',    middleware: [QuestionCtrl.saveQuestion       ]},
   {path: '/questions/:questionid',       httpMethod: 'DELETE', middleware: [QuestionCtrl.deleteQuestion]},
   {path: '/questions/:questionid',       httpMethod: 'GET', middleware: [QuestionCtrl.getQuestion]},
+  {path: '/questions/:questionid/preview',       httpMethod: 'PUT', middleware: [QuestionCtrl.previewQuestion]},
   {path: '/questions/:questionid/variables/validate',       httpMethod: 'PUT', middleware: [QuestionCtrl.validateVariables]},
   {path: '/questions/:questionid/answers/validate',       httpMethod: 'PUT', middleware: [QuestionCtrl.validateAnswer]},
 

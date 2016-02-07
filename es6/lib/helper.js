@@ -134,14 +134,7 @@ module.exports = {
 					}
 				};
 
-			Question.update(conditions, update, function (err, rows) {
-				if (err) {
-					cb(err);
-					return;
-				}
-
-				cb(null);
-			});
+			return Question.update(conditions, update);
 		},
 
 		updateFields: function (questionId, data, cb) {

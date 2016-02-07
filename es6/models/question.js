@@ -23,6 +23,23 @@ var Question = mongoose.Schema(
 	}
 );
 
+
+var postFind = function(doc) {
+	var self = doc;
+	self.answer = self.answer || new QuestionLib();
+	var metadata = {
+		title: self.name,
+		description: null,
+		keywords: null,
+		coverage: null,
+		autor: doc.owner,
+		editor: null,
+		date: self.created_at,
+		language: null
+	}
+	self.metadata = self.metadata || metadata;
+};
+
 Question.pre('save', function(next) {
 	this.updated_at = new Date();
 	if(this.isNew) {
@@ -47,7 +64,13 @@ Question.pre('save', function(next) {
 		}
 	}
 	next();
-});
+}).post('find', postFind)
+	.post('findOne', postFind)
+	.post('findOneAndUpdate', postFind);;
+
+
+
+
 
 Question.set('toJSON', {
 	transform: function (doc, ret, options) {
@@ -65,13 +88,22 @@ Question.statics.createQuestion = function (questionName, user, parentFolderId, 
 				parentFolderInstance = parentFolder;
 				newQuestionInstance = new Question({
 					name: questionName,
-					owner: user._id,
+					owner: user,
 					parent_folder: parentFolder._id,
 					users: parentFolder.users,
 					variables: "",
 					answer: new QuestionLib(),
 					formulation: "",
-					metadata: {}
+					metadata: {
+						title: questionName,
+						description: null,
+						keywords: null,
+						coverage: null,
+						autor: user.name,
+						editor: null,
+						date: null,
+						language: null
+					}
 				})
 				return newQuestionInstance.save();
 			})
@@ -131,23 +163,6 @@ Question.statics.updateName = function (questionId, name, cb) {
 		update = {
 			"$set": {
 				"name": name
-			}
-		};
-
-	this.update(conditions, update, cb);
-};
-
-Question.statics.updateData = function (questionId, data, cb) {
-	data = JSON.parse(data)
-	var conditions = {
-			_id: questionId
-		},
-		update = {
-			"$set": {
-				"metadata": JSON.stringify(data.metadata),
-				"answer": JSON.stringify(data.answer),
-				"variable": data.variables,
-				"formulation": JSON.stringify(data.formulation),
 			}
 		};
 
