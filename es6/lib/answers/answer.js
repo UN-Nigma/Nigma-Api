@@ -4,14 +4,18 @@ const Variable = require('../variables/variable');
 const uniqid = require('uniqid');
 const VariableParser = require('../variables/parser');
 class Answer {
-	constructor() {
-		this.names = [];
+	constructor(type = "Complete") {
 		this.correctValues = [];
-		this.showLabel = true;
-		this.precision = 0;
 		this.commonErrors = [];
 		this._id = uniqid();
 		this.code = null;
+		if(type == "Complete"){
+			this.names = [];
+			this.showLabel = true;
+			this.precision = 0;
+		} else if(type == "MultipleSelection") {
+			this.wrongValues = [];
+		}
 	}
 
 	addCommonError() {

@@ -26,7 +26,7 @@ var Question = mongoose.Schema(
 
 var postFind = function(doc) {
 	var self = doc;
-	self.answer = self.answer || new QuestionLib();
+	self.answer = self.answer || new QuestionLib(self.type);
 	var metadata = {
 		title: self.name,
 		description: null,
@@ -92,18 +92,9 @@ Question.statics.createQuestion = function (questionName, user, parentFolderId, 
 					parent_folder: parentFolder._id,
 					users: parentFolder.users,
 					variables: "",
-					answer: new QuestionLib(),
+					answer: null,
 					formulation: "",
-					metadata: {
-						title: questionName,
-						description: null,
-						keywords: null,
-						coverage: null,
-						autor: user.name,
-						editor: null,
-						date: null,
-						language: null
-					}
+					metadata: null
 				})
 				return newQuestionInstance.save();
 			})
