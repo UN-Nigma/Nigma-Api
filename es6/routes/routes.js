@@ -6,8 +6,6 @@ var Scorm = require('../controllers/scorm'),
 var routes = [
 
   //Scorm
-  {path: '/questions/:questionid/scorms',  httpMethod: 'POST',   middleware: [Scorm.zipScorm]},
-  {path: '/questions/:questionid/scorms',  httpMethod: 'GET',    middleware: [Scorm.Download]},
   {path: '/questions/:questionid/scorms/uploadfiles',   httpMethod: 'POST',   middleware: [Scorm.uploadFiles]},
 
 
@@ -23,6 +21,8 @@ var routes = [
   {path: '/questions/:questionid',       httpMethod: 'DELETE', middleware: [QuestionCtrl.deleteQuestion]},
   {path: '/questions/:questionid',       httpMethod: 'GET', middleware: [QuestionCtrl.getQuestion]},
   {path: '/questions/:questionid/preview',       httpMethod: 'PUT', middleware: [QuestionCtrl.previewQuestion]},
+  {path: '/questions/:questionid/export',       httpMethod: 'PUT', middleware: [QuestionCtrl.exportQuestion]},
+  {path: '/questions/:questionid/export/download',       httpMethod: 'GET', middleware: [QuestionCtrl.exportQuestionDownload]},
   {path: '/questions/:questionid/variables/validate',       httpMethod: 'PUT', middleware: [QuestionCtrl.validateVariables]},
   {path: '/questions/:questionid/answers/validate',       httpMethod: 'PUT', middleware: [QuestionCtrl.validateAnswer]},
 
