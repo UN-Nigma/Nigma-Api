@@ -46,20 +46,22 @@ Question.pre('save', function(next) {
 		this.created_at = new Date();
 	}
 	var answer = this.answer;
-	for(var i = 0; i < answer.correctValues.length; i++) {
-		var correctValue = answer.correctValues[i];
-		for(var key in correctValue) {
-			if(answer.names.indexOf(key) == -1) {
-				delete correctValue[key];
+	if(answer != null){
+		for(var i = 0; i < answer.correctValues.length; i++) {
+			var correctValue = answer.correctValues[i];
+			for(var key in correctValue) {
+				if(answer.names.indexOf(key) == -1) {
+					delete correctValue[key];
+				}
 			}
 		}
-	}
 
-	for(var i = 0; i < answer.commonErrors.length; i++) {
-		var commonError = answer.commonErrors[i].values;
-		for(var key in commonError) {
-			if(answer.names.indexOf(key) == -1) {
-				delete commonError[key];
+		for(var i = 0; i < answer.commonErrors.length; i++) {
+			var commonError = answer.commonErrors[i].values;
+			for(var key in commonError) {
+				if(answer.names.indexOf(key) == -1) {
+					delete commonError[key];
+				}
 			}
 		}
 	}

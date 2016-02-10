@@ -12,71 +12,13 @@ var Question = mongoose.model('question');
 module.exports = {
 
 	create: function (req, res) {
-		var password = req.body.user.pass;
-		var colors = ['4EAD3E', '6FC6D9', 'F8CB3A', 'E5204E'];
-		var number = Math.floor(Math.random() * 4);
-		var userName = req.body.user.name;
-
-		var photo = {
-			public_url: 'http://dummyimage.com/100x100/ffffff/' + colors[number] + '&text=' + userName.charAt(0).toUpperCase()
-		};
-
-		var rootFolder = new Folder();
-		rootFolder.name = "Mis preguntas";
-		var rootSharedFolder = new Folder();
-		rootSharedFolder.name = "Compartidos conmigo";
-
-		var user = new User({
-			email: req.body.user.email,
-			name: userName,
-			photo: photo,
-			root_folder: rootFolder._id,
-			root_shared_folder: rootSharedFolder._id
-		});
-
-		rootFolder.owner = user._id;
-		rootSharedFolder.owner = user._id;
-
-		async.waterfall(
-			[
-				function (next) {
-					rootFolder.create(function (err, folder) {
-						next(err);
-					});
-				},
-				function (next) {
-					rootSharedFolder.create(function (err, folder) {
-						next(err);
-					});
-				},
-				function (next) {
-					user.setPassword(password, function (err, user) {
-						next(err, user);
-					});
-				},
-				function (user, next) {
-					user.save(function (err, user) {
-						next(err, user);
-					});
-				}
-			],
-			function (err, user) {
-				if (err) {
-					return res.status(400).json({
-						ok: false,
-						message: err.message
-					});
-				}
-
-				//Cleaning user object
-				user.pass = undefined;
-				user.folders = undefined;
-
-				var token = jwt.sign(user, "zVTcnZgLTWoNxAidDbOwQQuWfKRwVC");
-
-				res.status(200).json({ok: true, token: token});
-			}
-		);
+		var data = req.body.user;
+		User.create(data).then(function(ret) {
+			res.status(200).json(ret);
+		}).catch(function(ret) {
+			console.error(ret);
+			res.status(400).json({ok: false})
+		})
 	},
 
 	login: function (req, res) {

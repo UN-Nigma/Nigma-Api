@@ -12,7 +12,7 @@ var express = require('express'),
 
 app.use(cors());
 
- mongoose.connect("mongodb://alexsotocx:qwe123@ds061454.mongolab.com:61454/nigma2_0", function (err, res) {
+ mongoose.connect("mongodb://localhost/nigma", function (err, res) {
   if (err) console.log("Mongoose database connection error")
   else    console.log("Mongoose database connection succeeded")
 });
