@@ -69,7 +69,7 @@ class Answer {
 		return output;
 	}
 
-	generateCode() {
+	_generateCodeComplete() {
 		var codeText = [];
 		for(var i = 0; i < this.correctValues.length; i++) {
 			var assertCode = this.names.map((name) => (this.correctValues[i][name] != "" && this.correctValues[i][name] != null && (typeof this.correctValues[i][name] !== "undefined"))  ? `math.eval("(${this.correctValues[i][name]})", Variables).toFixed(${this.precision}) == inputValue['${name}']` : `(inputValue['${name}'] == "" || inputValue['${name}'] == null)` );
@@ -100,6 +100,41 @@ class Answer {
 		codeText.push(`answerError = true;`);
 		codeText.push("}");
 		return codeText;
+	}
+
+	_generateCodeMultipleSelection() {
+		var codeText = [];
+		//Correct
+		codeText.push(`var isCorrect = correctValues.every(function(value) {return inputValues.indexOf(value) != -1})`);
+		codeText.push(`var hasFeedback = inputValues.some(function(value) {return CommonErrors.indexOf(value) != -1})`)
+
+		codeText.push(`
+			if(isCorrect) {
+				console.log("You are ok");
+				alert("Good");
+			}
+		`)
+		codeText.push(`
+			else if(hasFeedback) {
+				console.log("You are wrong + hasFeedback");
+				alert("hasFeedback: " + Question.commonErrors);
+			}
+		`)
+		codeText.push(`
+			else {
+				console.log("You are wrong");
+				alert("You are wrong");
+			}
+		`)
+		return codeText;
+	}
+
+	generateCode(type == "Complete") {
+		if(type == "Complete")
+			return _generateCodeComplete();
+		else if(type == "MultipleSelection") {
+			return _generateCodeMultipleSelection();
+		}
 	}
 
 	static createFromResponse(jsonAnswer) {

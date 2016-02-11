@@ -27,17 +27,17 @@ var Question = mongoose.Schema(
 var postFind = function(doc) {
 	var self = doc;
 	self.answer = self.answer || new QuestionLib(self.type);
-	var metadata = {
-		title: self.name,
-		description: null,
-		keywords: null,
-		coverage: null,
-		autor: doc.owner,
-		editor: null,
-		date: self.created_at,
-		language: null
-	}
-	self.metadata = self.metadata || metadata;
+	if(!self.metadata)
+		self.metadata = {
+			title: self.name,
+			description: null,
+			keywords: null,
+			coverage: null,
+			autor: doc.owner.name,
+			editor: null,
+			date: self.created_at,
+			language: null
+		}
 };
 
 Question.pre('save', function(next) {
@@ -183,9 +183,9 @@ Question.statics.deleteById = function (questionId, helper) {
 
 Question.statics.getById = function (questionId, fields) {
 	if(fields != undefined && fields != null)
-		return this.findOne({_id: questionId, deleted: false}, fields).exec();
+		return this.findOne({_id: questionId, deleted: false}, fields).populate('owner').exec();
 	else
-		return this.findOne({_id: questionId, deleted: false}).exec();
+		return this.findOne({_id: questionId, deleted: false}).populate('owner').exec();
 
 };
 
