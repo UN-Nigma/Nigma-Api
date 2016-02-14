@@ -36,6 +36,11 @@ class Answer {
     	output.error = output.error || commonErrorValidation.error;
 
 			return output;
+		} else if(type == "MultipleSelection") {
+			return {error: false, messages: {commonErrors: [], correctValues: [], wrongValues: []}}
+			var isOk = true; 
+			/*var match = expression.match(/\_[A-Za-z]/g) || [];
+    	var compoundOfEvaluable = match.every((varName) => evaluableVariables[varName] != null);*/
 		}
 
 	}
@@ -105,62 +110,89 @@ class Answer {
 	_generateCodeMultipleSelection() {
 		var codeText = [];
 		//Correct
-		codeText.push(`var isCorrect = correctValues.every(function(value) {return inputValues.indexOf(value) != -1})`);
-		codeText.push(`var hasFeedback = inputValues.some(function(value) {return CommonErrors.indexOf(value) != -1})`)
+		codeText.push(`
+			var isCorrect = false;
+			if(inputValues.length == correctValues.length && correctValues.length > 0) {
+				inputValues.sort();
+				correctValues.sort();
+				isCorrect = true;
+				for (var i = correctValues.length - 1; i >= 0 && isCorrect; i--) {
+					isCorrect	= (isCorrect && (correctValues[i] == inputValues[i]));
+				}
+			}
+		`);
+		codeText.push(`
+			var feedBack = [];
+			inputValues.forEach(function(value) {
+				if(commonErrors.indexOf(value) != -1)
+					feedBack.push(1)
+
+			});
+				
+		`)
 
 		codeText.push(`
 			if(isCorrect) {
 				console.log("You are ok");
 				alert("Good");
 			}
-		`)
+		`);
 		codeText.push(`
-			else if(hasFeedback) {
+			else if(feedBack.length > 0) {
 				console.log("You are wrong + hasFeedback");
-				alert("hasFeedback: " + Question.commonErrors);
+				alert("hasFeedback: " + feedBack.join(""));
 			}
-		`)
+		`);
 		codeText.push(`
 			else {
 				console.log("You are wrong");
 				alert("You are wrong");
 			}
-		`)
+		`);
 		return codeText;
 	}
 
-	generateCode(type == "Complete") {
+	generateCode(type = "Complete") {
 		if(type == "Complete")
-			return _generateCodeComplete();
+			return this._generateCodeComplete();
 		else if(type == "MultipleSelection") {
-			return _generateCodeMultipleSelection();
+			return this._generateCodeMultipleSelection();
 		}
 	}
 
-	static createFromResponse(jsonAnswer) {
-		var answer = new Answer();
+	static createFromResponse(jsonAnswer, questionType = "Complete") {
+
+		var answer = new Answer(questionType);
 		answer.names = jsonAnswer.names || [];
 		answer.code = jsonAnswer.code;
 		answer.correctValues = jsonAnswer.correctValues || [];
-		answer.showLabel = jsonAnswer.showLabel;
-		answer.precision = jsonAnswer.precision || 0;
-		answer._id = jsonAnswer._id;
-		answer.commonErrors = jsonAnswer.commonErrors.map(commonErrorJson => CommonError.createFromResponse(commonErrorJson));
+		if(questionType == "Complete") {
+			answer.showLabel = jsonAnswer.showLabel;
+			answer.precision = jsonAnswer.precision || 0;
+			answer._id = jsonAnswer._id;
+			answer.commonErrors = jsonAnswer.commonErrors.map(commonErrorJson => CommonError.createFromResponse(commonErrorJson));
+		} else if(questionType == "MultipleSelection") {
+			answer.commonErrors = jsonAnswer.commonErrors || [];
+			answer.wrongValues = jsonAnswer.wrongValues || [];
+		}
 		return answer;
 	}
 
-	static validateAnswer(jsonAnswer, variableText) {
-			var answer = Answer.createFromResponse(jsonAnswer);
+	static validateAnswer(jsonAnswer, variableText, questionType = "Complete", generateCode = false) {
+			var answer = Answer.createFromResponse(jsonAnswer,questionType );
 			var validationOutput = VariableParser.validate(variableText);
 			if(validationOutput.errors.length == 0) {
 				var variables = validationOutput.variables;
-				validationOutput = answer.isValid(variables);
+				validationOutput = answer.isValid(variables, questionType);
+				if(generateCode && !validationOutput.error)
+					answer.code = answer.generateCode(questionType);
 				return {
-					ok: !validationOutput.error,
+					ok: true,
 					errors: validationOutput.messages,
 					answer: answer,
-					variables: variables
+					variables: variables,
 				};
+					
 			} else {
 				return {
 					ok: false,

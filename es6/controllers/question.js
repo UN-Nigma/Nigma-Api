@@ -53,19 +53,20 @@ module.exports = {
 
 	previewQuestion(req, res) {
 		var question = req.body.question;
+		console.log(question);
 		var questionId = req.params.questionid;
 		QuestionHelper.updateData(questionId, question)
 			.then(function(lalal) {
 				var answer = question.answer;
 				var variableText = question.variables;
-				var output = Answer.validateAnswer(answer, variableText);
+				var output = Answer.validateAnswer(answer, variableText, question.type, true);
 				question.answer = output.answer;
 				question.variables = {
 					text:  variableText,
 					variables: output.variables
 				}
 				if(output.ok) {
-					question.answer.code = question.answer.generateCode();
+					question.answer.code = question.answer.generateCode(question.type);
 					return QuestionHelper.writeQuestionFile(question);
 				} else {
 					res.status(200).jsonp({ok: false, message: "No se puede previsualizar en este momento ya que existen errores en la validación"});

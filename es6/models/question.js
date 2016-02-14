@@ -33,7 +33,7 @@ var postFind = function(doc) {
 			description: null,
 			keywords: null,
 			coverage: null,
-			autor: doc.owner.name,
+			autor: null,
 			editor: null,
 			date: self.created_at,
 			language: null
