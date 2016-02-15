@@ -123,10 +123,10 @@ class Answer {
 		`);
 		codeText.push(`
 			var feedBack = [];
+			var map = mapMultipleData.commonErrors;
 			inputValues.forEach(function(value) {
 				if(commonErrors.indexOf(value) != -1)
-					feedBack.push(1)
-
+					feedBack.push(Question.answer.commonErrors[map[value]].message)
 			});
 				
 		`)
@@ -140,7 +140,7 @@ class Answer {
 		codeText.push(`
 			else if(feedBack.length > 0) {
 				console.log("You are wrong + hasFeedback");
-				alert("hasFeedback: " + feedBack.join(""));
+				alert("hasFeedback: " + feedBack.join(String.fromCharCode(10)));
 			}
 		`);
 		codeText.push(`
