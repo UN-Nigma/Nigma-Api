@@ -1,89 +1,472 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<manifest xmlns="http://www.imsproject.org/xsd/imscp_rootv1p1p2" xmlns:imsmd="http://www.imsglobal.org/xsd/imsmd_rootv1p2p1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:adlcp="http://www.adlnet.org/xsd/adlcp_rootv1p2" identifier="MANIFEST-CD0D330714CC939AE06CC2C633568D57" xsi:schemaLocation="http://www.imsproject.org/xsd/imscp_rootv1p1p2 imscp_rootv1p1p2.xsd http://www.imsglobal.org/xsd/imsmd_rootv1p2p1 imsmd_rootv1p2p1.xsd http://www.adlnet.org/xsd/adlcp_rootv1p2 adlcp_rootv1p2.xsd">
+<?xml version="1.0" standalone="no" ?>
+<manifest identifier="http://guiame.nigma.com/pregunta" version="1"
+   xmlns="http://www.imsproject.org/xsd/imscp_rootv1p1p2"
+   xmlns:adlcp="http://www.adlnet.org/xsd/adlcp_rootv1p2"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation="http://www.imsproject.org/xsd/imscp_rootv1p1p2 imscp_rootv1p1p2.xsd
+   http://www.imsglobal.org/xsd/imsmd_rootv1p2p1 imsmd_rootv1p2p1.xsd
+   http://www.adlnet.org/xsd/adlcp_rootv1p2 adlcp_rootv1p2.xsd">
+
+   <metadata>
+    <schema>ADL SCORM</schema>
+    <schemaversion>1.2</schemaversion>
+    <imsmd:lom>
+        <imsmd:general>
+            <imsmd:title>
+                <imsmd:langstring xml:lang = "en_US">_title_</imsmd:langstring>
+            </imsmd:title>
+            <imsmd:description>
+                <imsmd:langstring xml:lang = "en_US">
+                    _description_
+                </imsmd:langstring>
+            </imsmd:description>
+            <imsmd:keywords>
+                <imsmd:langstring xml:lang = "en_US">_keywords_</imsmd:langstring>
+            </imsmd:keywords>
+            <imsmd:coverage>
+                <imsmd:langstring xml:lang = "en_US">_coverage_</imsmd:langstring>
+            </imsmd:coverage>
+            <imsmd:cost>
+                <imsmd:source>
+                    <imsmd:langstring>LOMv1.0</imsmd:langstring>
+                </imsmd:source>
+                <imsmd:value>
+                    <imsmd:langstring>No</imsmd:langstring>
+                </imsmd:value>
+            </imsmd:cost>
+            <imsmd:copyrightandotherrestrictions>
+                <imsmd:source>
+                    <imsmd:langstring xml:lang="x-none">LOMv1.0</imsmd:langstring>
+                </imsmd:source>
+                <imsmd:value>
+                    <imsmd:langstring>CC BY-NC-ND 4.0</imsmd:langstring>
+                </imsmd:value>
+            </imsmd:copyrightandotherrestrictions>
+
+            <imsmd:learningresourcetype>
+                <imsmd:source>
+                    <imsmd:langstring>LOMv1.0</imsmd:langstring>
+                </imsmd:source>
+                <imsmd:value>
+                    <imsmd:langstring>Exercise</imsmd:langstring>
+                </imsmd:value>
+            </imsmd:learningresourcetype>
+        </imsmd:general>
 
 
-
-    <metadata>
-        <schema>ADL SCORM</schema>
-        <schemaversion>1.2</schemaversion>
-
-        <imsmd:lom>
-            <imsmd:general>
-                <imsmd:title>
-                    <imsmd:langstring xml:lang = "en_US">_title_</imsmd:langstring>
-                </imsmd:title>
-                <imsmd:description>
-                    <imsmd:langstring xml:lang = "en_US">
-                        _description_
-                    </imsmd:langstring>
-                </imsmd:description>
-                <imsmd:keywords>
-                    <imsmd:langstring xml:lang = "en_US">_keywords_</imsmd:langstring>
-                </imsmd:keywords>
-                <imsmd:coverage>
-                    <imsmd:langstring xml:lang = "en_US">_coverage_</imsmd:langstring>
-                </imsmd:coverage>
-                <imsmd:cost>
+        <imsmd:lifecycle>
+            <imsmd:contribute>
+                <imsmd:role>
                     <imsmd:source>
                         <imsmd:langstring>LOMv1.0</imsmd:langstring>
                     </imsmd:source>
                     <imsmd:value>
-                        <imsmd:langstring>No</imsmd:langstring>
+                        <imsmd:langstring>Author</imsmd:langstring>
                     </imsmd:value>
-                </imsmd:cost>
-                <imsmd:copyrightandotherrestrictions>
-                    <imsmd:source>
-                        <imsmd:langstring xml:lang="x-none">LOMv1.0</imsmd:langstring>
-                    </imsmd:source>
-                    <imsmd:value>
-                        <imsmd:langstring>CC BY-NC-ND 4.0</imsmd:langstring>
-                    </imsmd:value>
-                </imsmd:copyrightandotherrestrictions>
+                </imsmd:role>
+                <imsmd:entity>_autor_</imsmd:entity>
+                <imsmd:date>
+                    <imsmd:datetime>_date_</imsmd:datetime>
+                </imsmd:date>
 
-                <imsmd:learningresourcetype>
-                    <imsmd:source>
-                        <imsmd:langstring>LOMv1.0</imsmd:langstring>
-                    </imsmd:source>
-                    <imsmd:value>
-                        <imsmd:langstring>Exercise</imsmd:langstring>
-                    </imsmd:value>
-                </imsmd:learningresourcetype>
-            </imsmd:general>
+            </imsmd:contribute>
+        </imsmd:lifecycle>
 
+        <imsmd:metametadata>
+            <imsmd:language>_language_</imsmd:language>
+        </imsmd:metametadata>
 
-            <imsmd:lifecycle>
-                <imsmd:contribute>
-                    <imsmd:role>
-                        <imsmd:source>
-                            <imsmd:langstring>LOMv1.0</imsmd:langstring>
-                        </imsmd:source>
-                        <imsmd:value>
-                            <imsmd:langstring>Author</imsmd:langstring>
-                        </imsmd:value>
-                    </imsmd:role>
-                    <imsmd:entity>_autor_</imsmd:entity>
-                    <imsmd:date>
-                        <imsmd:datetime>_date_</imsmd:datetime>
-                    </imsmd:date>
-
-                </imsmd:contribute>
-            </imsmd:lifecycle>
-
-            <imsmd:metametadata>
-                <imsmd:language>_language_</imsmd:language>
-            </imsmd:metametadata>
-
-        </imsmd:lom>
-    </metadata>
-
-    <resources>
-        <resource identifier="RES-8A6F2A66D7F753E8895746442BB2D37D" type="webcontent" href="launch.html" adlcp:scormtype="sco">
-            <file href="launch.html" />
-            <file href="css/bootstrap.min.css" />
-            <file href="css/main.css" />
-
-        </resource>
-    </resources>
-
+    </imsmd:lom>
+</metadata>
+<organizations default="nigma_question">
+    <organization identifier="nigma_question">
+        <title>_title_</title>
+        <item identifier="item_1" identifierref="resource_1">
+            <title>_title_</title>
+        </item>
+    </organization>
+</organizations>
+<resources>
+    <resource identifier="resource_1" type="webcontent" adlcp:scormtype="sco" href="launch.html">
+        <file href="launch.html" />
+        <file href="css/bootstrap.min.css" />
+        <file href="css/main.css" />
+        <file href="css/samples.css" />
+        <file href="fonts/glyphicons-halflings-regular.eot" />
+        <file href="fonts/glyphicons-halflings-regular.svg" />
+        <file href="fonts/glyphicons-halflings-regular.ttf" />
+        <file href="fonts/glyphicons-halflings-regular.woff" />
+        <file href="js/printer.js" />
+        <file href="js/render.js" />
+        <file href="js/scormfunctions.js" />
+        <file href="js/vendor" />
+        <file href="js/vendor/bootstrap.min.js" />
+        <file href="js/vendor/jquery-1.11.0.min.js" />
+        <file href="js/vendor/math.min.js" />
+        <file href="js/vendor/MathJax" />
+        <file href="js/vendor/MathJax/extensions" />
+        <file href="js/vendor/MathJax/extensions/CHTML-preview.js" />
+        <file href="js/vendor/MathJax/extensions/FontWarnings.js" />
+        <file href="js/vendor/MathJax/extensions/HelpDialog.js" />
+        <file href="js/vendor/MathJax/extensions/HTML-CSS" />
+        <file href="js/vendor/MathJax/extensions/HTML-CSS/handle-floats.js" />
+        <file href="js/vendor/MathJax/extensions/jsMath2jax.js" />
+        <file href="js/vendor/MathJax/extensions/MatchWebFonts.js" />
+        <file href="js/vendor/MathJax/extensions/MathEvents.js" />
+        <file href="js/vendor/MathJax/extensions/MathMenu.js" />
+        <file href="js/vendor/MathJax/extensions/MathZoom.js" />
+        <file href="js/vendor/MathJax/extensions/Safe.js" />
+        <file href="js/vendor/MathJax/extensions/TeX" />
+        <file href="js/vendor/MathJax/extensions/TeX/action.js" />
+        <file href="js/vendor/MathJax/extensions/TeX/AMScd.js" />
+        <file href="js/vendor/MathJax/extensions/TeX/AMSmath.js" />
+        <file href="js/vendor/MathJax/extensions/TeX/AMSsymbols.js" />
+        <file href="js/vendor/MathJax/extensions/TeX/autobold.js" />
+        <file href="js/vendor/MathJax/extensions/TeX/autoload-all.js" />
+        <file href="js/vendor/MathJax/extensions/TeX/bbox.js" />
+        <file href="js/vendor/MathJax/extensions/TeX/begingroup.js" />
+        <file href="js/vendor/MathJax/extensions/TeX/boldsymbol.js" />
+        <file href="js/vendor/MathJax/extensions/TeX/cancel.js" />
+        <file href="js/vendor/MathJax/extensions/TeX/color.js" />
+        <file href="js/vendor/MathJax/extensions/TeX/enclose.js" />
+        <file href="js/vendor/MathJax/extensions/TeX/extpfeil.js" />
+        <file href="js/vendor/MathJax/extensions/TeX/HTML.js" />
+        <file href="js/vendor/MathJax/extensions/TeX/mathchoice.js" />
+        <file href="js/vendor/MathJax/extensions/TeX/mediawiki-texvc.js" />
+        <file href="js/vendor/MathJax/extensions/TeX/mhchem.js" />
+        <file href="js/vendor/MathJax/extensions/TeX/newcommand.js" />
+        <file href="js/vendor/MathJax/extensions/TeX/noErrors.js" />
+        <file href="js/vendor/MathJax/extensions/TeX/noUndefined.js" />
+        <file href="js/vendor/MathJax/extensions/TeX/unicode.js" />
+        <file href="js/vendor/MathJax/extensions/TeX/verb.js" />
+        <file href="js/vendor/MathJax/extensions/tex2jax.js" />
+        <file href="js/vendor/MathJax/extensions/toMathML.js" />
+        <file href="js/vendor/MathJax/fonts" />
+        <file href="js/vendor/MathJax/fonts/HTML-CSS" />
+        <file href="js/vendor/MathJax/fonts/HTML-CSS/TeX" />
+        <file href="js/vendor/MathJax/jax" />
+        <file href="js/vendor/MathJax/jax/element" />
+        <file href="js/vendor/MathJax/jax/element/mml" />
+        <file href="js/vendor/MathJax/jax/element/mml/jax.js" />
+        <file href="js/vendor/MathJax/jax/element/mml/optable" />
+        <file href="js/vendor/MathJax/jax/element/mml/optable/Arrows.js" />
+        <file href="js/vendor/MathJax/jax/element/mml/optable/BasicLatin.js" />
+        <file href="js/vendor/MathJax/jax/element/mml/optable/CombDiacritMarks.js" />
+        <file href="js/vendor/MathJax/jax/element/mml/optable/CombDiactForSymbols.js" />
+        <file href="js/vendor/MathJax/jax/element/mml/optable/Dingbats.js" />
+        <file href="js/vendor/MathJax/jax/element/mml/optable/GeneralPunctuation.js" />
+        <file href="js/vendor/MathJax/jax/element/mml/optable/GeometricShapes.js" />
+        <file href="js/vendor/MathJax/jax/element/mml/optable/GreekAndCoptic.js" />
+        <file href="js/vendor/MathJax/jax/element/mml/optable/Latin1Supplement.js" />
+        <file href="js/vendor/MathJax/jax/element/mml/optable/LetterlikeSymbols.js" />
+        <file href="js/vendor/MathJax/jax/element/mml/optable/MathOperators.js" />
+        <file href="js/vendor/MathJax/jax/element/mml/optable/MiscMathSymbolsA.js" />
+        <file href="js/vendor/MathJax/jax/element/mml/optable/MiscMathSymbolsB.js" />
+        <file href="js/vendor/MathJax/jax/element/mml/optable/MiscSymbolsAndArrows.js" />
+        <file href="js/vendor/MathJax/jax/element/mml/optable/MiscTechnical.js" />
+        <file href="js/vendor/MathJax/jax/element/mml/optable/SpacingModLetters.js" />
+        <file href="js/vendor/MathJax/jax/element/mml/optable/SupplementalArrowsA.js" />
+        <file href="js/vendor/MathJax/jax/element/mml/optable/SupplementalArrowsB.js" />
+        <file href="js/vendor/MathJax/jax/element/mml/optable/SuppMathOperators.js" />
+        <file href="js/vendor/MathJax/jax/input" />
+        <file href="js/vendor/MathJax/jax/input/TeX" />
+        <file href="js/vendor/MathJax/jax/input/TeX/config.js" />
+        <file href="js/vendor/MathJax/jax/input/TeX/jax.js" />
+        <file href="js/vendor/MathJax/jax/output" />
+        <file href="js/vendor/MathJax/jax/output/CommonHTML" />
+        <file href="js/vendor/MathJax/jax/output/CommonHTML/config.js" />
+        <file href="js/vendor/MathJax/jax/output/CommonHTML/jax.js" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/autoload" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/autoload/annotation-xml.js" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/autoload/maction.js" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/autoload/menclose.js" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/autoload/mglyph.js" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/autoload/mmultiscripts.js" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/autoload/ms.js" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/autoload/mtable.js" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/autoload/multiline.js" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/config.js" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/AMS" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/AMS/Regular" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/AMS/Regular/Arrows.js" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/AMS/Regular/BBBold.js" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/AMS/Regular/BoxDrawing.js" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/AMS/Regular/CombDiacritMarks.js" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/AMS/Regular/Dingbats.js" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/AMS/Regular/EnclosedAlphanum.js" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/AMS/Regular/GeneralPunctuation.js" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/AMS/Regular/GeometricShapes.js" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/AMS/Regular/GreekAndCoptic.js" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/AMS/Regular/Latin1Supplement.js" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/AMS/Regular/LatinExtendedA.js" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/AMS/Regular/LetterlikeSymbols.js" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/AMS/Regular/Main.js" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/AMS/Regular/MathOperators.js" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/AMS/Regular/MiscMathSymbolsB.js" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/AMS/Regular/MiscSymbols.js" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/AMS/Regular/MiscTechnical.js" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/AMS/Regular/PUA.js" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/AMS/Regular/SpacingModLetters.js" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/AMS/Regular/SuppMathOperators.js" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/Caligraphic" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/Caligraphic/Bold" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/Caligraphic/Bold/Main.js" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/Caligraphic/Regular" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/Caligraphic/Regular/Main.js" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/fontdata-extra.js" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/fontdata.js" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/Fraktur" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/Fraktur/Bold" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/Fraktur/Bold/BasicLatin.js" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/Fraktur/Bold/Main.js" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/Fraktur/Bold/Other.js" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/Fraktur/Bold/PUA.js" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/Fraktur/Regular" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/Fraktur/Regular/BasicLatin.js" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/Fraktur/Regular/Main.js" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/Fraktur/Regular/Other.js" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/Fraktur/Regular/PUA.js" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/Greek" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/Greek/Bold" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/Greek/Bold/Main.js" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/Greek/BoldItalic" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/Greek/BoldItalic/Main.js" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/Greek/Italic" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/Greek/Italic/Main.js" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/Greek/Regular" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/Greek/Regular/Main.js" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/Main" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/Main/Bold" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/Main/Bold/Arrows.js" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/Main/Bold/CombDiacritMarks.js" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/Main/Bold/CombDiactForSymbols.js" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/Main/Bold/GeneralPunctuation.js" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/Main/Bold/GeometricShapes.js" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/Main/Bold/Latin1Supplement.js" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/Main/Bold/LatinExtendedA.js" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/Main/Bold/LatinExtendedB.js" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/Main/Bold/LetterlikeSymbols.js" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/Main/Bold/Main.js" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/Main/Bold/MathOperators.js" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/Main/Bold/MiscMathSymbolsA.js" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/Main/Bold/MiscSymbols.js" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/Main/Bold/MiscTechnical.js" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/Main/Bold/SpacingModLetters.js" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/Main/Bold/SupplementalArrowsA.js" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/Main/Bold/SuppMathOperators.js" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/Main/Italic" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/Main/Italic/CombDiacritMarks.js" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/Main/Italic/GeneralPunctuation.js" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/Main/Italic/Latin1Supplement.js" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/Main/Italic/LetterlikeSymbols.js" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/Main/Italic/Main.js" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/Main/Regular" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/Main/Regular/CombDiacritMarks.js" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/Main/Regular/GeometricShapes.js" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/Main/Regular/Main.js" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/Main/Regular/MiscSymbols.js" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/Main/Regular/SpacingModLetters.js" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/Math" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/Math/BoldItalic" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/Math/BoldItalic/Main.js" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/Math/Italic" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/Math/Italic/Main.js" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/SansSerif" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/SansSerif/Bold" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/SansSerif/Bold/BasicLatin.js" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/SansSerif/Bold/CombDiacritMarks.js" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/SansSerif/Bold/Main.js" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/SansSerif/Bold/Other.js" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/SansSerif/Italic" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/SansSerif/Italic/BasicLatin.js" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/SansSerif/Italic/CombDiacritMarks.js" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/SansSerif/Italic/Main.js" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/SansSerif/Italic/Other.js" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/SansSerif/Regular" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/SansSerif/Regular/BasicLatin.js" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/SansSerif/Regular/CombDiacritMarks.js" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/SansSerif/Regular/Main.js" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/SansSerif/Regular/Other.js" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/Script" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/Script/Regular" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/Script/Regular/BasicLatin.js" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/Script/Regular/Main.js" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/Script/Regular/Other.js" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/Size1" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/Size1/Regular" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/Size1/Regular/Main.js" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/Size2" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/Size2/Regular" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/Size2/Regular/Main.js" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/Size3" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/Size3/Regular" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/Size3/Regular/Main.js" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/Size4" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/Size4/Regular" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/Size4/Regular/Main.js" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/Typewriter" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/Typewriter/Regular" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/Typewriter/Regular/BasicLatin.js" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/Typewriter/Regular/CombDiacritMarks.js" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/Typewriter/Regular/Main.js" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/Typewriter/Regular/Other.js" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/WinChrome" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/WinChrome/Regular" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/WinChrome/Regular/Main.js" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/WinIE6" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/WinIE6/Regular" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/WinIE6/Regular/AMS.js" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/WinIE6/Regular/Bold.js" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/fonts/TeX/WinIE6/Regular/Main.js" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/imageFonts.js" />
+        <file href="js/vendor/MathJax/jax/output/HTML-CSS/jax.js" />
+        <file href="js/vendor/MathJax/jax/output/SVG" />
+        <file href="js/vendor/MathJax/jax/output/SVG/autoload" />
+        <file href="js/vendor/MathJax/jax/output/SVG/autoload/annotation-xml.js" />
+        <file href="js/vendor/MathJax/jax/output/SVG/autoload/maction.js" />
+        <file href="js/vendor/MathJax/jax/output/SVG/autoload/menclose.js" />
+        <file href="js/vendor/MathJax/jax/output/SVG/autoload/mglyph.js" />
+        <file href="js/vendor/MathJax/jax/output/SVG/autoload/mmultiscripts.js" />
+        <file href="js/vendor/MathJax/jax/output/SVG/autoload/ms.js" />
+        <file href="js/vendor/MathJax/jax/output/SVG/autoload/mtable.js" />
+        <file href="js/vendor/MathJax/jax/output/SVG/autoload/multiline.js" />
+        <file href="js/vendor/MathJax/jax/output/SVG/config.js" />
+        <file href="js/vendor/MathJax/jax/output/SVG/fonts" />
+        <file href="js/vendor/MathJax/jax/output/SVG/fonts/TeX" />
+        <file href="js/vendor/MathJax/jax/output/SVG/fonts/TeX/AMS" />
+        <file href="js/vendor/MathJax/jax/output/SVG/fonts/TeX/AMS/Regular" />
+        <file href="js/vendor/MathJax/jax/output/SVG/fonts/TeX/AMS/Regular/Arrows.js" />
+        <file href="js/vendor/MathJax/jax/output/SVG/fonts/TeX/AMS/Regular/BoxDrawing.js" />
+        <file href="js/vendor/MathJax/jax/output/SVG/fonts/TeX/AMS/Regular/CombDiacritMarks.js" />
+        <file href="js/vendor/MathJax/jax/output/SVG/fonts/TeX/AMS/Regular/Dingbats.js" />
+        <file href="js/vendor/MathJax/jax/output/SVG/fonts/TeX/AMS/Regular/EnclosedAlphanum.js" />
+        <file href="js/vendor/MathJax/jax/output/SVG/fonts/TeX/AMS/Regular/GeneralPunctuation.js" />
+        <file href="js/vendor/MathJax/jax/output/SVG/fonts/TeX/AMS/Regular/GeometricShapes.js" />
+        <file href="js/vendor/MathJax/jax/output/SVG/fonts/TeX/AMS/Regular/GreekAndCoptic.js" />
+        <file href="js/vendor/MathJax/jax/output/SVG/fonts/TeX/AMS/Regular/Latin1Supplement.js" />
+        <file href="js/vendor/MathJax/jax/output/SVG/fonts/TeX/AMS/Regular/LatinExtendedA.js" />
+        <file href="js/vendor/MathJax/jax/output/SVG/fonts/TeX/AMS/Regular/LetterlikeSymbols.js" />
+        <file href="js/vendor/MathJax/jax/output/SVG/fonts/TeX/AMS/Regular/Main.js" />
+        <file href="js/vendor/MathJax/jax/output/SVG/fonts/TeX/AMS/Regular/MathOperators.js" />
+        <file href="js/vendor/MathJax/jax/output/SVG/fonts/TeX/AMS/Regular/MiscMathSymbolsB.js" />
+        <file href="js/vendor/MathJax/jax/output/SVG/fonts/TeX/AMS/Regular/MiscSymbols.js" />
+        <file href="js/vendor/MathJax/jax/output/SVG/fonts/TeX/AMS/Regular/MiscTechnical.js" />
+        <file href="js/vendor/MathJax/jax/output/SVG/fonts/TeX/AMS/Regular/PUA.js" />
+        <file href="js/vendor/MathJax/jax/output/SVG/fonts/TeX/AMS/Regular/SpacingModLetters.js" />
+        <file href="js/vendor/MathJax/jax/output/SVG/fonts/TeX/AMS/Regular/SuppMathOperators.js" />
+        <file href="js/vendor/MathJax/jax/output/SVG/fonts/TeX/Caligraphic" />
+        <file href="js/vendor/MathJax/jax/output/SVG/fonts/TeX/Caligraphic/Bold" />
+        <file href="js/vendor/MathJax/jax/output/SVG/fonts/TeX/Caligraphic/Bold/Main.js" />
+        <file href="js/vendor/MathJax/jax/output/SVG/fonts/TeX/Caligraphic/Regular" />
+        <file href="js/vendor/MathJax/jax/output/SVG/fonts/TeX/Caligraphic/Regular/Main.js" />
+        <file href="js/vendor/MathJax/jax/output/SVG/fonts/TeX/fontdata-extra.js" />
+        <file href="js/vendor/MathJax/jax/output/SVG/fonts/TeX/fontdata.js" />
+        <file href="js/vendor/MathJax/jax/output/SVG/fonts/TeX/Fraktur" />
+        <file href="js/vendor/MathJax/jax/output/SVG/fonts/TeX/Fraktur/Bold" />
+        <file href="js/vendor/MathJax/jax/output/SVG/fonts/TeX/Fraktur/Bold/BasicLatin.js" />
+        <file href="js/vendor/MathJax/jax/output/SVG/fonts/TeX/Fraktur/Bold/Main.js" />
+        <file href="js/vendor/MathJax/jax/output/SVG/fonts/TeX/Fraktur/Bold/Other.js" />
+        <file href="js/vendor/MathJax/jax/output/SVG/fonts/TeX/Fraktur/Bold/PUA.js" />
+        <file href="js/vendor/MathJax/jax/output/SVG/fonts/TeX/Fraktur/Regular" />
+        <file href="js/vendor/MathJax/jax/output/SVG/fonts/TeX/Fraktur/Regular/BasicLatin.js" />
+        <file href="js/vendor/MathJax/jax/output/SVG/fonts/TeX/Fraktur/Regular/Main.js" />
+        <file href="js/vendor/MathJax/jax/output/SVG/fonts/TeX/Fraktur/Regular/Other.js" />
+        <file href="js/vendor/MathJax/jax/output/SVG/fonts/TeX/Fraktur/Regular/PUA.js" />
+        <file href="js/vendor/MathJax/jax/output/SVG/fonts/TeX/Main" />
+        <file href="js/vendor/MathJax/jax/output/SVG/fonts/TeX/Main/Bold" />
+        <file href="js/vendor/MathJax/jax/output/SVG/fonts/TeX/Main/Bold/Arrows.js" />
+        <file href="js/vendor/MathJax/jax/output/SVG/fonts/TeX/Main/Bold/BasicLatin.js" />
+        <file href="js/vendor/MathJax/jax/output/SVG/fonts/TeX/Main/Bold/CombDiacritMarks.js" />
+        <file href="js/vendor/MathJax/jax/output/SVG/fonts/TeX/Main/Bold/CombDiactForSymbols.js" />
+        <file href="js/vendor/MathJax/jax/output/SVG/fonts/TeX/Main/Bold/GeneralPunctuation.js" />
+        <file href="js/vendor/MathJax/jax/output/SVG/fonts/TeX/Main/Bold/GeometricShapes.js" />
+        <file href="js/vendor/MathJax/jax/output/SVG/fonts/TeX/Main/Bold/GreekAndCoptic.js" />
+        <file href="js/vendor/MathJax/jax/output/SVG/fonts/TeX/Main/Bold/Latin1Supplement.js" />
+        <file href="js/vendor/MathJax/jax/output/SVG/fonts/TeX/Main/Bold/LatinExtendedA.js" />
+        <file href="js/vendor/MathJax/jax/output/SVG/fonts/TeX/Main/Bold/LatinExtendedB.js" />
+        <file href="js/vendor/MathJax/jax/output/SVG/fonts/TeX/Main/Bold/LetterlikeSymbols.js" />
+        <file href="js/vendor/MathJax/jax/output/SVG/fonts/TeX/Main/Bold/Main.js" />
+        <file href="js/vendor/MathJax/jax/output/SVG/fonts/TeX/Main/Bold/MathOperators.js" />
+        <file href="js/vendor/MathJax/jax/output/SVG/fonts/TeX/Main/Bold/MiscMathSymbolsA.js" />
+        <file href="js/vendor/MathJax/jax/output/SVG/fonts/TeX/Main/Bold/MiscSymbols.js" />
+        <file href="js/vendor/MathJax/jax/output/SVG/fonts/TeX/Main/Bold/MiscTechnical.js" />
+        <file href="js/vendor/MathJax/jax/output/SVG/fonts/TeX/Main/Bold/SpacingModLetters.js" />
+        <file href="js/vendor/MathJax/jax/output/SVG/fonts/TeX/Main/Bold/SupplementalArrowsA.js" />
+        <file href="js/vendor/MathJax/jax/output/SVG/fonts/TeX/Main/Bold/SuppMathOperators.js" />
+        <file href="js/vendor/MathJax/jax/output/SVG/fonts/TeX/Main/Italic" />
+        <file href="js/vendor/MathJax/jax/output/SVG/fonts/TeX/Main/Italic/BasicLatin.js" />
+        <file href="js/vendor/MathJax/jax/output/SVG/fonts/TeX/Main/Italic/CombDiacritMarks.js" />
+        <file href="js/vendor/MathJax/jax/output/SVG/fonts/TeX/Main/Italic/GeneralPunctuation.js" />
+        <file href="js/vendor/MathJax/jax/output/SVG/fonts/TeX/Main/Italic/GreekAndCoptic.js" />
+        <file href="js/vendor/MathJax/jax/output/SVG/fonts/TeX/Main/Italic/LatinExtendedA.js" />
+        <file href="js/vendor/MathJax/jax/output/SVG/fonts/TeX/Main/Italic/LatinExtendedB.js" />
+        <file href="js/vendor/MathJax/jax/output/SVG/fonts/TeX/Main/Italic/LetterlikeSymbols.js" />
+        <file href="js/vendor/MathJax/jax/output/SVG/fonts/TeX/Main/Italic/Main.js" />
+        <file href="js/vendor/MathJax/jax/output/SVG/fonts/TeX/Main/Italic/MathOperators.js" />
+        <file href="js/vendor/MathJax/jax/output/SVG/fonts/TeX/Main/Regular" />
+        <file href="js/vendor/MathJax/jax/output/SVG/fonts/TeX/Main/Regular/BasicLatin.js" />
+        <file href="js/vendor/MathJax/jax/output/SVG/fonts/TeX/Main/Regular/CombDiacritMarks.js" />
+        <file href="js/vendor/MathJax/jax/output/SVG/fonts/TeX/Main/Regular/GeometricShapes.js" />
+        <file href="js/vendor/MathJax/jax/output/SVG/fonts/TeX/Main/Regular/GreekAndCoptic.js" />
+        <file href="js/vendor/MathJax/jax/output/SVG/fonts/TeX/Main/Regular/LatinExtendedA.js" />
+        <file href="js/vendor/MathJax/jax/output/SVG/fonts/TeX/Main/Regular/LatinExtendedB.js" />
+        <file href="js/vendor/MathJax/jax/output/SVG/fonts/TeX/Main/Regular/LetterlikeSymbols.js" />
+        <file href="js/vendor/MathJax/jax/output/SVG/fonts/TeX/Main/Regular/Main.js" />
+        <file href="js/vendor/MathJax/jax/output/SVG/fonts/TeX/Main/Regular/MathOperators.js" />
+        <file href="js/vendor/MathJax/jax/output/SVG/fonts/TeX/Main/Regular/MiscSymbols.js" />
+        <file href="js/vendor/MathJax/jax/output/SVG/fonts/TeX/Main/Regular/SpacingModLetters.js" />
+        <file href="js/vendor/MathJax/jax/output/SVG/fonts/TeX/Main/Regular/SuppMathOperators.js" />
+        <file href="js/vendor/MathJax/jax/output/SVG/fonts/TeX/Math" />
+        <file href="js/vendor/MathJax/jax/output/SVG/fonts/TeX/Math/BoldItalic" />
+        <file href="js/vendor/MathJax/jax/output/SVG/fonts/TeX/Math/BoldItalic/Main.js" />
+        <file href="js/vendor/MathJax/jax/output/SVG/fonts/TeX/Math/Italic" />
+        <file href="js/vendor/MathJax/jax/output/SVG/fonts/TeX/Math/Italic/Main.js" />
+        <file href="js/vendor/MathJax/jax/output/SVG/fonts/TeX/SansSerif" />
+        <file href="js/vendor/MathJax/jax/output/SVG/fonts/TeX/SansSerif/Bold" />
+        <file href="js/vendor/MathJax/jax/output/SVG/fonts/TeX/SansSerif/Bold/BasicLatin.js" />
+        <file href="js/vendor/MathJax/jax/output/SVG/fonts/TeX/SansSerif/Bold/CombDiacritMarks.js" />
+        <file href="js/vendor/MathJax/jax/output/SVG/fonts/TeX/SansSerif/Bold/Main.js" />
+        <file href="js/vendor/MathJax/jax/output/SVG/fonts/TeX/SansSerif/Bold/Other.js" />
+        <file href="js/vendor/MathJax/jax/output/SVG/fonts/TeX/SansSerif/Italic" />
+        <file href="js/vendor/MathJax/jax/output/SVG/fonts/TeX/SansSerif/Italic/BasicLatin.js" />
+        <file href="js/vendor/MathJax/jax/output/SVG/fonts/TeX/SansSerif/Italic/CombDiacritMarks.js" />
+        <file href="js/vendor/MathJax/jax/output/SVG/fonts/TeX/SansSerif/Italic/Main.js" />
+        <file href="js/vendor/MathJax/jax/output/SVG/fonts/TeX/SansSerif/Italic/Other.js" />
+        <file href="js/vendor/MathJax/jax/output/SVG/fonts/TeX/SansSerif/Regular" />
+        <file href="js/vendor/MathJax/jax/output/SVG/fonts/TeX/SansSerif/Regular/BasicLatin.js" />
+        <file href="js/vendor/MathJax/jax/output/SVG/fonts/TeX/SansSerif/Regular/CombDiacritMarks.js" />
+        <file href="js/vendor/MathJax/jax/output/SVG/fonts/TeX/SansSerif/Regular/Main.js" />
+        <file href="js/vendor/MathJax/jax/output/SVG/fonts/TeX/SansSerif/Regular/Other.js" />
+        <file href="js/vendor/MathJax/jax/output/SVG/fonts/TeX/Script" />
+        <file href="js/vendor/MathJax/jax/output/SVG/fonts/TeX/Script/Regular" />
+        <file href="js/vendor/MathJax/jax/output/SVG/fonts/TeX/Script/Regular/BasicLatin.js" />
+        <file href="js/vendor/MathJax/jax/output/SVG/fonts/TeX/Script/Regular/Main.js" />
+        <file href="js/vendor/MathJax/jax/output/SVG/fonts/TeX/Size1" />
+        <file href="js/vendor/MathJax/jax/output/SVG/fonts/TeX/Size1/Regular" />
+        <file href="js/vendor/MathJax/jax/output/SVG/fonts/TeX/Size1/Regular/Main.js" />
+        <file href="js/vendor/MathJax/jax/output/SVG/fonts/TeX/Size2" />
+        <file href="js/vendor/MathJax/jax/output/SVG/fonts/TeX/Size2/Regular" />
+        <file href="js/vendor/MathJax/jax/output/SVG/fonts/TeX/Size2/Regular/Main.js" />
+        <file href="js/vendor/MathJax/jax/output/SVG/fonts/TeX/Size3" />
+        <file href="js/vendor/MathJax/jax/output/SVG/fonts/TeX/Size3/Regular" />
+        <file href="js/vendor/MathJax/jax/output/SVG/fonts/TeX/Size3/Regular/Main.js" />
+        <file href="js/vendor/MathJax/jax/output/SVG/fonts/TeX/Size4" />
+        <file href="js/vendor/MathJax/jax/output/SVG/fonts/TeX/Size4/Regular" />
+        <file href="js/vendor/MathJax/jax/output/SVG/fonts/TeX/Size4/Regular/Main.js" />
+        <file href="js/vendor/MathJax/jax/output/SVG/fonts/TeX/Typewriter" />
+        <file href="js/vendor/MathJax/jax/output/SVG/fonts/TeX/Typewriter/Regular" />
+        <file href="js/vendor/MathJax/jax/output/SVG/fonts/TeX/Typewriter/Regular/BasicLatin.js" />
+        <file href="js/vendor/MathJax/jax/output/SVG/fonts/TeX/Typewriter/Regular/CombDiacritMarks.js" />
+        <file href="js/vendor/MathJax/jax/output/SVG/fonts/TeX/Typewriter/Regular/Main.js" />
+        <file href="js/vendor/MathJax/jax/output/SVG/fonts/TeX/Typewriter/Regular/Other.js" />
+        <file href="js/vendor/MathJax/jax/output/SVG/jax.js" />
+        <file href="js/vendor/MathJax/MathJax.js" />
+        <file href="js/vendor/mathjs.js" />
+        <file href="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js" />
+        <file href="js/xml-question.js" />
+    </resource>
+</resources>
 </manifest>
-

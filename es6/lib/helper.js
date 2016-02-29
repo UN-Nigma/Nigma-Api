@@ -111,7 +111,7 @@ module.exports = {
 		writeQuestionFile: function(question) {
 			return new Promise(function(resolve, reject) {
 				var route = "../../questions/" + question._id + "/js/xml-question.js";
-				var data = "var question = " + JSON.stringify(question) + "; question = JSON.parse(question);window.question = window.question || question;";
+				var data = "var question = " + JSON.stringify(question) + "; window.question = window.question || question;";
 				fs.writeFile(path.join(__dirname, route), data, function (err) {
 					if(err)
 						reject(err);

@@ -38,7 +38,7 @@ class Answer {
 			return output;
 		} else if(type == "MultipleSelection") {
 			return {error: false, messages: {commonErrors: [], correctValues: [], wrongValues: []}}
-			var isOk = true; 
+			var isOk = true;
 			/*var match = expression.match(/\_[A-Za-z]/g) || [];
     	var compoundOfEvaluable = match.every((varName) => evaluableVariables[varName] != null);*/
 		}
@@ -128,12 +128,13 @@ class Answer {
 				if(commonErrors.indexOf(value) != -1)
 					feedBack.push(Question.answer.commonErrors[map[value]].message)
 			});
-				
+
 		`)
 
 		codeText.push(`
 			if(isCorrect) {
 				console.log("You are ok");
+				answerError = false;
 				alert("Good");
 			}
 		`);
@@ -141,12 +142,14 @@ class Answer {
 			else if(feedBack.length > 0) {
 				console.log("You are wrong + hasFeedback");
 				alert("hasFeedback: " + feedBack.join(String.fromCharCode(10)));
+				answerError = true;
 			}
 		`);
 		codeText.push(`
 			else {
 				console.log("You are wrong");
 				alert("You are wrong");
+				answerError = true;
 			}
 		`);
 		return codeText;
@@ -181,18 +184,19 @@ class Answer {
 	static validateAnswer(jsonAnswer, variableText, questionType = "Complete", generateCode = false) {
 			var answer = Answer.createFromResponse(jsonAnswer,questionType );
 			var validationOutput = VariableParser.validate(variableText);
+			console.log(questionType);
 			if(validationOutput.errors.length == 0) {
 				var variables = validationOutput.variables;
 				validationOutput = answer.isValid(variables, questionType);
 				if(generateCode && !validationOutput.error)
 					answer.code = answer.generateCode(questionType);
 				return {
-					ok: true,
+					ok: !validationOutput.error,
 					errors: validationOutput.messages,
 					answer: answer,
 					variables: variables,
 				};
-					
+
 			} else {
 				return {
 					ok: false,

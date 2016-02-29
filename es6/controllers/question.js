@@ -19,7 +19,7 @@ module.exports = {
 		var user = req.user;
 		var parentFolderId = req.params.folderid;
 
-		Question.createQuestion(req.body.question.name, user, parentFolderId, helper)
+		Question.createQuestion(req.body.question, user, parentFolderId, helper)
 			.then(function(question) {
 				res.status(200).json({
 					ok: true,
@@ -96,7 +96,7 @@ module.exports = {
 			.then(function(a) {
 				var answer = question.answer;
 				var variableText = question.variables;
-				var output = Answer.validateAnswer(answer, variableText);
+				var output = Answer.validateAnswer(answer, variableText, question.type, true);
 				question.answer = output.answer;
 				question.variables = {
 					text:  variableText,

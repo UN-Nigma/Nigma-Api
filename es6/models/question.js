@@ -81,7 +81,7 @@ Question.set('toJSON', {
 	}
 });
 
-Question.statics.createQuestion = function (questionName, user, parentFolderId, helper) {
+Question.statics.createQuestion = function (question, user, parentFolderId, helper) {
 	return new Promise(function(resolve, reject) {
 		var parentFolderInstance = null;
 		var newQuestionInstance = null;
@@ -89,7 +89,8 @@ Question.statics.createQuestion = function (questionName, user, parentFolderId, 
 			.then(function(parentFolder) {
 				parentFolderInstance = parentFolder;
 				newQuestionInstance = new Question({
-					name: questionName,
+					name: question.questionName,
+					type: question.type,
 					owner: user,
 					parent_folder: parentFolder._id,
 					users: parentFolder.users,

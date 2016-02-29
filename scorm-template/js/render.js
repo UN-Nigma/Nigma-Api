@@ -11,7 +11,6 @@ var RandomUtils = window.randomUtils;
 var Printer = window.Printer;
 var Variables = {};
 var Variable = {};
-var DecodeText = {"&amp;&amp;#35;40;": "(", "&amp;&amp;#35;41;": ")"};
 
 var correctAnswer = true;
 var correctResponses = 0;
@@ -43,35 +42,20 @@ var Render = {
 
   //get Texts and Formulas
   parseString: function (text) {
-     ///La idea de esta fucnión es cargar toda la formulación tal y como el profesor la programó haciedo uso del objeto
-     // Question que tiene toda la data en formato JSON de la pregunta (Formulación, variables y respuestas), aquí se deben cargar las formulas,
-     // expresiones, texto, etc con el valor de las variables correspondiente despues de generar los numeros aleatorios y además ejecutar las operaciones
-     // entre ellas(En el caso que se deba ejecutar la operacion).
-     // El lugar donde se imprimirá toda la formulación tiene la clase .statement y lo pueden encontrar en launch.html
-     var expresionsInQuestion = [];   // @(_q + _b)
-     for (var i = 0; i < text.length; i++) {
-      var token = text[i];
-      if(token == '_'){
-      var str = text.substring(i,i+2);
-      text =  text.replace(new RegExp(str,"g"),Variables[text.substring(i,i+2)]);
-      }
-      if(token == '@'){
-        var initialIndex = {'index':i};
-      } else if(token == '}' && initialIndex){
-        var finalIndex = {'index':i};
-        expresionsInQuestion.push({
-          'expresion':String(text).substring(initialIndex.index+2,finalIndex.index),
-          'completeExpresion': String(text).substring(initialIndex.index,finalIndex.index+1),
-          'initial':initialIndex.index,
-          'final':finalIndex.index
-        });
-      }
-    }
-    expresionsInQuestion.map((expresion,index)=>{
-      var newValor = math.eval(expresion.expresion);
-      text = text.replace(expresion.completeExpresion,newValor);
+    text = text.replace(/\<img\s+alt\=\"([^\"]+)\"\s+.*?(class=\"latex\")[^>]*>/g, function(math, latex, className) {
+      return "$"+latex+"$";
     });
-    
+
+    text = text.replace(/\@\{([^}]+)\}/g, function(match, expression) {
+      return math.eval(expression, Variables);
+    });
+    text = text.replace(/_[a-zA-Z]/g, function(match) {
+      if(Variables[match] == null) {
+        return match;
+      } else {
+        return Variables[match];
+      }
+    });  
     return text;
 
   },
@@ -87,7 +71,6 @@ var Render = {
       var res = Printer.generateMultipleInput(Question);
       $('#inputResponses').html(this.parseString(res.html));
       mapMultipleData = res.maps;
-      console.log(mapMultipleData);
     }
   },
 
@@ -101,7 +84,6 @@ var Render = {
           inputValue[input.attr('id')]
         else
           inputValue[input.attr('id')] = Number(Number(input.val()).toFixed(Question.answer.precision));
-        console.log(inputValue);
       });
 
       var response = "";
@@ -110,8 +92,16 @@ var Render = {
       eval(code);
       if(answerError) {
         alert(response);
+        setScore(0);
+        ScormProcessSetValue("cmi.core.lesson_status", "failed");
+        ScormProcessFinish();
+        window.close()
       } else {
-        alert(response)
+        alert(response);
+        setScore(100);
+        ScormProcessSetValue("cmi.core.lesson_status", "passed");
+        ScormProcessFinish();
+        window.close()
       }
     } else if (Question.type == "MultipleSelection") {
       var inputs = $("input[name='options']:checked")
@@ -124,7 +114,18 @@ var Render = {
       }
       var correctValues = mapIds(mapMultipleData.correctValues);
       var commonErrors = mapIds(mapMultipleData.commonErrors);
-      eval(Question.answer.code.join("\n"))
+      eval(Question.answer.code.join("\n"));
+      if(answerError) {
+        setScore(0);
+        ScormProcessSetValue("cmi.core.lesson_status", "failed");
+        ScormProcessFinish();
+        window.close()
+      } else {
+        setScore(100);
+        ScormProcessSetValue("cmi.core.lesson_status", "passed");
+        ScormProcessFinish();
+        window.close()
+      }
     }
     
   },
@@ -136,7 +137,6 @@ var Render = {
     });
 
     Variable = Variables;
-
   },
 
 };

@@ -8,16 +8,13 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="css/bootstrap.min.css">
-        <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="css/main.css">
         <link rel="stylesheet" href="css/samples.css">
-        <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
-        <script type="text/javascript" async
-  src="https://cdn.mathjax.org/mathjax/2.2-latest/MathJax.js?config=TeX-AMS_HTML">
+</script>
 
 </script>
     </head>
-    <body>
+    <body onunload="ScormProcessFinish();">
         <!-- Container where should render the question-formulation -->
         <section id="Question" class="container-fluid">
            <article class="col-xs-8 col-xs-offset-2">
@@ -56,15 +53,35 @@
             </div>
         </div>
 
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.0.min.js"><\/script>')</script>
+        <script src="js/vendor/jquery-1.11.0.min.js"></script>
         <script src="js/vendor/bootstrap.min.js"></script>
-        <script defer src="js/vendor/math.min.js"></script>
-        <script src="js/api.js"></script>
-        <script src="http://cdnjs.cloudflare.com/ajax/libs/mathjs/2.2.0/math.min.js" type="text/javascript"></script>
+        <script src="js/vendor/mathjs.js" type="text/javascript"></script>
         <script src="js/xml-question.js"></script>
-        <script src="js/random-generator.js"></script>
         <script src="js/render.js"></script>
         <script src="js/printer.js"></script>
+        <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+        <script type="text/x-mathjax-config">
+          MathJax.Hub.Config({
+            extensions: ["tex2jax.js"],
+            
+            jax: ["input/TeX", "output/SVG"],
+            tex2jax: {
+              inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+            },
+            "SVG": { availableFonts: ["TeX"] },
+            showProcessingMessages: false
+          });
+        </script>
+        <script src="js/vendor/MathJax/MathJax.js"></script>
+        <script src="js/scormfunctions.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                ScormProcessInitialize();
+                var completionStatus = ScormProcessGetValue("cmi.core.lesson_status");
+                if (completionStatus == "not attempted"){
+                    ScormProcessSetValue("cmi.core.lesson_status", "incomplete");
+                }
+            });
+        </script>
     </body>
 </html>

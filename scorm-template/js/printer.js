@@ -34,11 +34,14 @@ var Printer = {
 				messages[x] = value.value;
 			}
 		};
+		console.log(answer)
 		auxMap = mapCorrect;
+		answer.correctValues = answer.correctValues || [];
 		answer.correctValues.forEach(eachFunction);
-		auxMap = mapCommonError;
-		answer.commonErrors.forEach(eachFunction);
+		// auxMap = mapCommonError;
+		// answer.commonErrors.forEach(eachFunction);
 		auxMap = mapError;
+		answer.wrongValues = answer.wrongValues || [];
 		answer.wrongValues.forEach(eachFunction);
 
 		var type = "radio";
