@@ -196,7 +196,7 @@ function ScormProcessSetValue(element, value){
         alert("Error - Could not store a value in the LMS.\n\nYour results may not be recorded.\n\n" + errorDescription);
         return;
     }
-    API.LMSCommit();
+    //API.LMSCommit();
     
 }
 
@@ -204,5 +204,5 @@ function setScore(score){
     ScormProcessSetValue("cmi.core.score.raw", score);
     ScormProcessSetValue("cmi.core.score.min", "0");
     ScormProcessSetValue("cmi.core.score.max", "100");
-    API.LMSCommit();
+    //API.LMSCommit();
 }

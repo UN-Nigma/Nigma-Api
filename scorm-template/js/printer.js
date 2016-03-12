@@ -38,8 +38,8 @@ var Printer = {
 		auxMap = mapCorrect;
 		answer.correctValues = answer.correctValues || [];
 		answer.correctValues.forEach(eachFunction);
-		// auxMap = mapCommonError;
-		// answer.commonErrors.forEach(eachFunction);
+		auxMap = mapCommonError;
+		answer.commonErrors.forEach(eachFunction);
 		auxMap = mapError;
 		answer.wrongValues = answer.wrongValues || [];
 		answer.wrongValues.forEach(eachFunction);
