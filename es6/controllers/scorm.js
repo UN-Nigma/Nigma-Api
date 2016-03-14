@@ -9,7 +9,7 @@ const Answer = require('../lib/answers/answer');
 
 module.exports = {
 
-  // zipScorm: function (req, res) {
+  // zipScorm(req, res) {
   //   var questionId = req.params.questionid;
   //   var question = req.body.question;
   //   var originFolderRoute = "./questions/" + questionId;
@@ -62,7 +62,7 @@ module.exports = {
   //   })
   // },
 
-  // Download: function (req, res) {
+  // Download(req, res) {
   //   var questionId = req.params.questionid;
   //   var file = "./questions/" + questionId + ".zip";
 
@@ -72,9 +72,9 @@ module.exports = {
   //   fs.createReadStream(file).pipe(res);
   // },
 
-  uploadFiles: function (req, res) {
+  uploadFiles(req, res) {
 
-    console.log("Siiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii");
+    console.log("TRyiiing somethign new");
     var questionId = req.params.questionid;
     var imageFile;
 
@@ -91,7 +91,7 @@ module.exports = {
 
     console.log("Este es el que se esta ejecutando, bueno ?");
 
-    res.status(200).jsonp({url: Config.apiUrl + "/static/" + questionId + "/images/" + imageFile});
+    res.status(200).jsonp({uploaded: 1, url: Config.apiUrl + "/static/" + questionId + "/images/" + imageFile});
   }
 
 };

@@ -48,7 +48,6 @@ User.statics = {
 
 	create(data) {
 		return new Promise(function(resolve, reject) {
-			console.log(data);
 			var color = ['4EAD3E', '6FC6D9', 'F8CB3A', 'E5204E'][Math.floor(Math.random() * 4)];
 			var photo = {
 				public_url: 'http://dummyimage.com/100x100/ffffff/' + color + '&text=' + data.name.charAt(0).toUpperCase()
@@ -66,7 +65,6 @@ User.statics = {
 			});
 			rootFolder.owner = user._id;
 			rootSharedFolder.owner = user._id;
-			console.log("IOm")
 			rootFolder.save().then(function(folder) {
 				return rootSharedFolder.save();
 			}).then(function() {
@@ -77,11 +75,13 @@ User.statics = {
 						else
 							resolve(user);
 					});
-				}) 
+				})
 			}).then(function(user) {
 				return user.save();
 			}).then(function(user) {
-
+				//Cleaning user object
+				user.pass = undefined;
+				user.folders = undefined;
 				var token = jwt.sign(user, "zVTcnZgLTWoNxAidDbOwQQuWfKRwVC");
 				console.log(user);
 				resolve({ok: true, token: token});
@@ -90,7 +90,7 @@ User.statics = {
 				reject(error)
 			})
 		});
-		
+
 	}
 };
 

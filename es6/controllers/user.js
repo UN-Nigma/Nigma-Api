@@ -11,7 +11,7 @@ var Question = mongoose.model('question');
 
 module.exports = {
 
-	create: function (req, res) {
+	create(req, res) {
 		var data = req.body.user;
 		User.create(data).then(function(ret) {
 			res.status(200).json(ret);
@@ -21,7 +21,7 @@ module.exports = {
 		})
 	},
 
-	login: function (req, res) {
+	login(req, res) {
 		var user = req.body.user;
 
 		User.authenticate()(user.email, user.pass, function (err, user, message) {
@@ -35,7 +35,7 @@ module.exports = {
 
 				return res.status(401).json({
 					ok: false,
-					message: "Email or password invalid"
+					message: "Email o contraseña invalidos."
 				});
 			}
 
@@ -52,7 +52,7 @@ module.exports = {
 		});
 	},
 
-	getInfo: function (req, res) {
+	getInfo(req, res) {
 		var user = req.user;
 
 		User.getById(user._id, 'name email photo')
@@ -70,7 +70,7 @@ module.exports = {
 			});
 	},
 
-	sharedFolder: function (req, res) {
+	sharedFolder(req, res) {
 		var folderIdToAdd = req.params.folderid;
 		var email = req.body.user.email;
 
@@ -104,7 +104,7 @@ module.exports = {
 		});
 	},
 
-	sharedQuestion: function (req, res) {
+	sharedQuestion(req, res) {
 		var questionId = req.params.questionid;
 		var email = req.body.user.email;
 
@@ -141,7 +141,7 @@ module.exports = {
 		);
 	},
 
-	getUserFolder: function (req, res) {
+	getUserFolder(req, res) {
 		var userId = req.user._id;
 		User.getById(userId, 'root_folder')
 			.then(function(user) {

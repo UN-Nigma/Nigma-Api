@@ -27,7 +27,7 @@ module.exports = function (app) {
       const url = req.url;
       const questionId = url.match("/api/questions/(.*)/scorms/uploadfiles")[1];
 
-      cb(null, `./questions/${questionId}/images`);
+      cb(null, `../questions/${questionId}/images`);
     }
   });
 
