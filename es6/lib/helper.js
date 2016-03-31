@@ -86,14 +86,14 @@ module.exports = {
 			}
 
 			if(metadata) {
-				xmlManifest = xmlManifest.replace(/_title_/, metadata.title);
-				xmlManifest = xmlManifest.replace(/_description_/, metadata.description);
-				xmlManifest = xmlManifest.replace(/_keywords_/, metadata.keywords);
-				xmlManifest = xmlManifest.replace(/_coverage_/, metadata.coverage);
-				xmlManifest = xmlManifest.replace(/_autor_/, metadata.autor);
-				xmlManifest = xmlManifest.replace(/_entity_/, metadata.editor);
-				xmlManifest = xmlManifest.replace(/_date_/, metadata.date);
-				xmlManifest = xmlManifest.replace(/_language_/, metadata.language);
+				xmlManifest = xmlManifest.replace(/_title_/g, metadata.title);
+				xmlManifest = xmlManifest.replace(/_description_/g, metadata.description);
+				xmlManifest = xmlManifest.replace(/_keywords_/g, metadata.keywords);
+				xmlManifest = xmlManifest.replace(/_coverage_/g, metadata.coverage);
+				xmlManifest = xmlManifest.replace(/_autor_/g, metadata.autor);
+				xmlManifest = xmlManifest.replace(/_entity_/g, metadata.editor);
+				xmlManifest = xmlManifest.replace(/_date_/g, metadata.date);
+				xmlManifest = xmlManifest.replace(/_language_/g, metadata.language);
 			}
 
 			fs.writeFile(routeManifest, xmlManifest, function (err) {

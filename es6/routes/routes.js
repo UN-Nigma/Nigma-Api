@@ -19,6 +19,7 @@ var routes = [
   {path: '/folders/:folderid/questions', httpMethod: 'POST',   middleware: [QuestionCtrl.createQuestion]},
   {path: '/questions/:questionid/data',  httpMethod: 'PUT',    middleware: [QuestionCtrl.saveQuestion       ]},
   {path: '/questions/:questionid',       httpMethod: 'DELETE', middleware: [QuestionCtrl.deleteQuestion]},
+  {path: '/questions/:questionid',       httpMethod: 'PUT', middleware: [QuestionCtrl.updateQuestion]},
   {path: '/questions/:questionid',       httpMethod: 'GET', middleware: [QuestionCtrl.getQuestion]},
   {path: '/questions/:questionid/preview',       httpMethod: 'PUT', middleware: [QuestionCtrl.previewQuestion]},
   {path: '/questions/:questionid/export',       httpMethod: 'PUT', middleware: [QuestionCtrl.exportQuestion]},

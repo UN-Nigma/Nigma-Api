@@ -76,7 +76,8 @@
         <script src="js/scormfunctions.js"></script>
         <script type="text/javascript">
             $(document).ready(function() {
-                ScormProcessInitialize();
+                if(!Question.preview)
+                    ScormProcessInitialize();
                 // var completionStatus = ScormProcessGetValue("cmi.core.lesson_status");
                 // if (completionStatus == "not attempted"){
                 //     ScormProcessSetValue("cmi.core.lesson_status", "incomplete");

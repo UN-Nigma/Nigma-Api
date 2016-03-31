@@ -18,7 +18,6 @@ module.exports = {
 	createQuestion(req, res) {
 		var user = req.user;
 		var parentFolderId = req.params.folderid;
-
 		Question.createQuestion(req.body.question, user, parentFolderId, helper)
 			.then(function(question) {
 				res.status(200).json({
@@ -67,6 +66,7 @@ module.exports = {
 				}
 				if(output.ok) {
 					question.answer.code = question.answer.generateCode(question.type);
+					question.preview = true;
 					return QuestionHelper.writeQuestionFile(question);
 				} else {
 					res.status(200).jsonp({ok: false, message: "No se puede previsualizar en este momento ya que existen errores en la validación"});
@@ -104,6 +104,7 @@ module.exports = {
 				}
 				if(output.ok) {
 					question.answer.code = question.answer.generateCode();
+					question.preview = false;
 					return QuestionHelper.writeQuestionFile(question);
 				} else {
 					res.status(200).jsonp({ok: false, message: "No se puede exportar en este momento ya que existen errores en la validación"});
@@ -171,6 +172,22 @@ saveQuestion(req, res) {
 			});
 		});
 
+},
+
+updateQuestion(req, res) {
+	var data = req.body.question;
+	console.log(data);
+	var questionId = req.params.questionid;
+	Question.findByIdAndUpdate(questionId, {$set:data},  {new: true}).then(function(question) {
+		res.status(200).json({
+			ok: true
+		});
+	}).catch(function(err) {
+		res.status(400).json({
+			ok:false,
+			message: err.message
+		});
+	})
 },
 
 deleteQuestion(req, res) {

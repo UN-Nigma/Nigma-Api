@@ -17,9 +17,9 @@ var Question = mongoose.Schema(
 		owner: {type: Schema.Types.ObjectId, required: true, ref: 'user'},
 		users: [{type: Schema.Types.ObjectId, required: true, ref: 'user'}],
 		images: [{type: String}],
-		deleted: {type: Boolean, required: true, default: false},
-		updated_at: Date,
-		created_at: Date
+		deleted: {type: Boolean, required: true, default: false}
+	},{
+		timestamps: {createdAt: "created_at", updatedAt: "updated_at"}
 	}
 );
 
@@ -41,10 +41,6 @@ var postFind = function(doc) {
 };
 
 Question.pre('save', function(next) {
-	this.updated_at = new Date();
-	if(this.isNew) {
-		this.created_at = new Date();
-	}
 	var answer = this.answer;
 	if(answer != null){
 		for(var i = 0; i < answer.correctValues.length; i++) {
@@ -55,7 +51,6 @@ Question.pre('save', function(next) {
 				}
 			}
 		}
-
 		for(var i = 0; i < answer.commonErrors.length; i++) {
 			var commonError = answer.commonErrors[i].values;
 			for(var key in commonError) {

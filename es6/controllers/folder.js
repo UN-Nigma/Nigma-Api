@@ -9,7 +9,7 @@ var mongoose = require('mongoose'),
 
 module.exports = {
 
-	create: function (req, res) {
+	create(req, res) {
 		var folderName = req.body.folder.name;
 		var parentFolderId = req.params.folderid;
 		var user = req.user;
@@ -50,7 +50,7 @@ module.exports = {
 			})
 	},
 
-	get: function(req, res) {
+	get(req, res) {
 		var folderId = req.params.folderid;
 		var user = req.user;
 		Folder.getById(folderId, "_id name parent_folder folders questions").then(function(folder) {
@@ -66,32 +66,23 @@ module.exports = {
 		})
 	},
 
-	update: function (req, res) {
+	update(req, res) {
 		var folder = req.body.folder,
 			folderId = req.params.folderid;
 
-		Folder.updateName(folderId, folder.name, function (err, rows) {
-			if (err) {
-				return res.status(400).json({
-					ok: false,
-					message: err.message
-				});
-			}
-
-			if (rows.n == 0) {
-				return res.status(400).json({
-					ok: false,
-					message: "The folder does not exist"
-				});
-			}
-
+		Folder.findByIdAndUpdate(folderId, {$set: folder}).then(function(folder) {
 			res.status(200).json({
 				ok: true
+			})
+		}).catch(function(err) {
+			res.status(400).json({
+				ok: false,
+				message: err.message
 			});
-		});
+		})
 	},
 
-	delete: function (req, res) {
+	delete(req, res) {
 		var folderId = req.params.folderid;
 
 		Folder.deleteById(folderId, function (err, rows) {

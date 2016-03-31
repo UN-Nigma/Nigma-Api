@@ -15,16 +15,16 @@ var folder = Schema(
 		folders: [{type: Schema.Types.ObjectId, ref: 'folder'}],
 		owner: {type: Schema.Types.ObjectId, required: true, ref: 'user'},
 		users: [{type: Schema.Types.ObjectId, ref: 'user'}],
-		deleted: {type: Boolean, required: true, default: false},
-		updated_at: Date,
-		created_at: Date
+		deleted: {type: Boolean, required: true, default: false}
+	}, {
+		timestamps: {createdAt: "created_at", updatedAt: "updated_at"}
 	}
 );
 
 var autoPopulateData = function(next) {
 		this.populate({
 			path: 'questions',
-			select: "_id name created_at updated_at owner",
+			select: "_id name created_at updated_at owner type",
 			populate: {path: "owner", select: "_id name"},
 			match: {deleted: false}
 		});
@@ -44,20 +44,10 @@ var autoPopulateData = function(next) {
 		next();
 };
 
-var beforeSave = function(next) {
-	this.updated_at = new Date();
-	if(this.isNew) {
-		this.created_at = new Date();
-	}
-	next();
-};
-
 //Callbacks
 folder.pre('find', autoPopulateData)
 	.pre('findOne', autoPopulateData)
-	.pre('findById', autoPopulateData)
-	.pre('save', beforeSave)
-	.pre('update', beforeSave);
+	.pre('findById', autoPopulateData);
 
 folder.pre('save', function(next) {
 	this.updated_at = new Date();
