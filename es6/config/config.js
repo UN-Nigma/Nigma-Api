@@ -6,7 +6,7 @@ var config = {
     regex: /http:\/\/localhost:4000\/static\/.*?\/images\//g
   },
   stage: {
-  	apiUrl: "http://www.nigma.api.grupo-guiame.org/",
+  	apiUrl: "http://www.nigma.api.grupo-guiame.org",
     regex: /http:\/\/www\.nigma\.api\.grupo-guiame\.org\/static\/.*?\/images\//g
   },
   production: {
