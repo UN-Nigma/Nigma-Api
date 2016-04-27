@@ -36,15 +36,7 @@ module.exports = {
 		fsx.removeSync(route);
 	},
 
-	copyImages: function (images, cb) {
-		fsx.removeSync(path.resolve(__dirname, '../scorm-template/images'));
-		fsx.mkdirsSync(path.resolve(__dirname, '../scorm-template/images'));
-		images.map(function (image) {
 
-			fsx.copySync(path.resolve(__dirname, '../images/' + image), path.resolve(__dirname, '../scorm-template/images/' + image));
-		});
-		cb(true);
-	},
 
 	copyScormTemplate: function (folderName) {
 		fsx.copySync(path.resolve(__dirname, '../../scorm-template'), path.resolve(__dirname, '../../questions/' + folderName));
@@ -67,11 +59,11 @@ module.exports = {
 		var images = [];
 
 		try{
-			images = fs.readdirSync(path.resolve(__dirname, folderRoute));
+			images = fs.readdirSync(folderRoute);
 		} catch (e) {
 			images.map(function(image){
 				if(questionData.indexOf(image) === -1){
-						fsx.removeSync(path.join(__dirname, `${folderRoute}/${image}`));
+						fsx.removeSync(`${folderRoute}/${image}`);
 				}
 			});
 		}
@@ -110,9 +102,9 @@ module.exports = {
 
 		writeQuestionFile: function(question) {
 			return new Promise(function(resolve, reject) {
-				var route = "../../questions/" + question._id + "/js/xml-question.js";
+				var route = path.resolve(__dirname, `../../questions/${question._id}/js/xml-question.js`);
 				var data = "var question = " + JSON.stringify(question) + "; window.question = window.question || question;";
-				fs.writeFile(path.join(__dirname, route), data, function (err) {
+				fs.writeFile(route, data, function (err) {
 					if(err)
 						reject(err);
 					else

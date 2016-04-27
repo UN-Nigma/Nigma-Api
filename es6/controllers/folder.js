@@ -19,7 +19,7 @@ module.exports = {
 					name: folderName,
 					owner: user._id,
 					parent_folder: parentFolder._id,
-					users: parentFolder.users //The new folder have the same users  acces from her parent
+					users: parentFolder.users
 				});
 				return newFolder.save();
 			})

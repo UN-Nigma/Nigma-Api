@@ -86,9 +86,9 @@ module.exports = {
 	exportQuestion(req, res) {
 		var question = req.body.question;
 		var questionId = req.params.questionid;
-		var originFolderRoute = "../questions/" + questionId;
-		var copyFolderRoute = "../questions/" + questionId + "-scorm";
-		var zipRoute = "../questions/" + questionId + ".zip";
+		var originFolderRoute = path.resolve(__dirname, `../../questions/${questionId}`);
+		var copyFolderRoute = path.resolve(__dirname, `../../questions/${questionId}-scorm`);
+		var zipRoute = path.resolve(__dirname, `../../questions/${questionId}.zip`);
 		var scormQuestionDataRoute = copyFolderRoute + "/js/xml-question.js";
 		var routeManifest = copyFolderRoute + "/imsmanifest.xml";
 
@@ -147,7 +147,7 @@ module.exports = {
 	},
 	exportQuestionDownload(req, res) {
 		var questionId = req.params.questionid;
-		var file = "../questions/" + questionId + ".zip";
+		var file = path.resolve(__dirname, `../../questions/${questionId}.zip`);
 		var mime = require('mime');
 
 		res.setHeader('Content-disposition', 'attachment; filename=' + path.basename(file));
@@ -158,7 +158,7 @@ module.exports = {
 saveQuestion(req, res) {
 	var question = req.body.question;
 	var questionId = req.params.questionid;
-	const folderRoute = "../../questions/" + questionId + "/images";
+	const folderRoute = path.resolve(__dirname, `../../questions/${questionId}/images`);
 
 	QuestionHelper.updateData(questionId, question)
 		.then(function(ll) {
