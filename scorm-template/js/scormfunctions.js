@@ -99,7 +99,6 @@ function ScormProcessInitialize(){
     var result;
     
     API = getAPI();
-    console.log("API>>>>>>>>>", API);
     if (API == null){
         alert("ERROR - Could not establish a connection with the LMS.\n\nYour results may not be recorded.");
         return;
@@ -127,7 +126,6 @@ function ScormProcessFinish(){
     
     //Don't terminate if we haven't initialized or if we've already terminated
     if (initialized == false || finishCalled == true){return;}
-    console.log("Closing process")
     result = API.LMSFinish("");
     
     finishCalled = true;
@@ -196,7 +194,6 @@ function ScormProcessSetValue(element, value){
         alert("Error - Could not store a value in the LMS.\n\nYour results may not be recorded.\n\n" + errorDescription);
         return;
     }
-    //API.LMSCommit();
     
 }
 
@@ -204,5 +201,4 @@ function setScore(score){
     ScormProcessSetValue("cmi.core.score.raw", score);
     ScormProcessSetValue("cmi.core.score.min", "0");
     ScormProcessSetValue("cmi.core.score.max", "100");
-    //API.LMSCommit();
 }

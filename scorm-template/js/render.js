@@ -86,22 +86,20 @@ var Render = {
           inputValue[input.attr('id')] = Number(Number(input.val()).toFixed(Question.answer.precision));
       });
 
-      var response = "";
+      var feedback = "";
       var answerError = true;
       var code = Question.answer.code.join("");
       eval(code);
       if(answerError) {
-        alert(response);
         setScore(0);
+        ScormProcessSetValue("cmi.comments_from_lms", feedback);
         ScormProcessSetValue("cmi.core.lesson_status", "failed");
         ScormProcessFinish();
-        window.close()
       } else {
-        alert(response);
-        setScore(100);
+        setScore(1);
+        ScormProcessSetValue("cmi.comments_from_lms", feedback);
         ScormProcessSetValue("cmi.core.lesson_status", "passed");
         ScormProcessFinish();
-        window.close()
       }
     } else if (Question.type == "MultipleSelection") {
       var inputs = $("input[name='options']:checked")
@@ -115,16 +113,17 @@ var Render = {
       var correctValues = mapIds(mapMultipleData.correctValues);
       var commonErrors = mapIds(mapMultipleData.commonErrors);
       eval(Question.answer.code.join("\n"));
+      var feedBack = [];
       if(answerError) {
         setScore(0);
+        ScormProcessSetValue("cmi.comments_from_lms", feedback.join("\n"));
         ScormProcessSetValue("cmi.core.lesson_status", "failed");
         ScormProcessFinish();
-        window.close()
       } else {
-        setScore(100);
+        setScore(1);
+        ScormProcessSetValue("cmi.comments_from_lms", "");
         ScormProcessSetValue("cmi.core.lesson_status", "passed");
         ScormProcessFinish();
-        window.close()
       }
     }
     

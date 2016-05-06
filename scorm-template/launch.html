@@ -22,7 +22,7 @@
                <p id="infoVars"></p>
 
                 <!-- Container of inputs -->
-               <article id="inputResponses"></article>
+               <article id="inputResponses" class="form-horizontal"></article>
 
                <h4> 
                     <!--<input id="inputData" class="form-control" type="text" autofocus>-->
@@ -78,10 +78,6 @@
             $(document).ready(function() {
                 if(!Question.preview)
                     ScormProcessInitialize();
-                // var completionStatus = ScormProcessGetValue("cmi.core.lesson_status");
-                // if (completionStatus == "not attempted"){
-                //     ScormProcessSetValue("cmi.core.lesson_status", "incomplete");
-                // }
             });
         </script>
     </body>

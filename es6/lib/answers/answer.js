@@ -84,7 +84,7 @@ class Answer {
 				codeText.push(`else if(${assertCode.join(' && ')}) {`);
 			}
 			codeText.push(`console.log("You did it!");`);
-			codeText.push(`response = 'Correcto';`);
+			codeText.push(`feedback = '';`);
 			codeText.push(`answerError = false;`);
 
 			codeText.push(`}`);
@@ -94,14 +94,14 @@ class Answer {
 			var failCode = this.names.map((name) => (commonError.values[name] != "" && commonError.values[name] != null && (typeof commonError.values[name] !== "undefined") ) ? `math.eval("(${commonError.values[name]})", Variables).toFixed(${this.precision}) == inputValue['${name}']` : `(inputValue['${name}'] == "" || inputValue['${name}'] == null)`);
 			codeText.push(`else if (${failCode.join(" && ")}) {`);
 			codeText.push(`console.log("You fail, ${commonError.message}");`);
-			codeText.push(`response = '${commonError.message}';`);
-			codeText.push(`error = true;`);
+			codeText.push(`feedback = '${commonError.message}';`);
+			codeText.push(`answerError = true;`);
 			codeText.push(`console.log("You fail, ${commonError.message}");`);
 			codeText.push("}");
 
 		}
 		codeText.push(`else {`);
-		codeText.push(`response = "Incorrecto!";`);
+		codeText.push(`feedback = '';`);
 		codeText.push(`answerError = true;`);
 		codeText.push("}");
 		return codeText;
@@ -122,7 +122,6 @@ class Answer {
 			}
 		`);
 		codeText.push(`
-			var feedBack = [];
 			var map = mapMultipleData.commonErrors;
 			inputValues.forEach(function(value) {
 				if(commonErrors.indexOf(value) != -1)
@@ -141,14 +140,12 @@ class Answer {
 		codeText.push(`
 			else if(feedBack.length > 0) {
 				console.log("You are wrong + hasFeedback");
-				alert("hasFeedback: " + feedBack.join(String.fromCharCode(10)));
 				answerError = true;
 			}
 		`);
 		codeText.push(`
 			else {
 				console.log("You are wrong");
-				alert("You are wrong");
 				answerError = true;
 			}
 		`);
