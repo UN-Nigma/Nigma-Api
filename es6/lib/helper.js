@@ -47,11 +47,7 @@ module.exports = {
 	},
 
 	updateImagesUrls: function (originalData){
-		/*
-		var modifiedData = originalData.replace(/http:\/\/[^]*\/static\//, "images/");
-		*/
 		var modifiedData = originalData.replace(Config.regex, "images/");
-
 		return modifiedData;
 	},
 

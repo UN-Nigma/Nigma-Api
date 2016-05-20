@@ -134,7 +134,6 @@ class Answer {
 			if(isCorrect) {
 				console.log("You are ok");
 				answerError = false;
-				alert("Good");
 			}
 		`);
 		codeText.push(`
@@ -181,7 +180,7 @@ class Answer {
 	static validateAnswer(jsonAnswer, variableText, questionType = "Complete", generateCode = false) {
 			var answer = Answer.createFromResponse(jsonAnswer,questionType );
 			var validationOutput = VariableParser.validate(variableText);
-			console.log(questionType);
+			console.log(">>>>>>>>>>>>>>>>>>>>>>", questionType)
 			if(validationOutput.errors.length == 0) {
 				var variables = validationOutput.variables;
 				validationOutput = answer.isValid(variables, questionType);

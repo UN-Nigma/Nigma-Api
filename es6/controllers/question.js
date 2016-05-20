@@ -52,7 +52,6 @@ module.exports = {
 
 	previewQuestion(req, res) {
 		var question = req.body.question;
-		console.log(question);
 		var questionId = req.params.questionid;
 		QuestionHelper.updateData(questionId, question)
 			.then(function(lalal) {
@@ -103,7 +102,7 @@ module.exports = {
 					variables: output.variables
 				}
 				if(output.ok) {
-					question.answer.code = question.answer.generateCode();
+					question.answer.code = question.answer.generateCode(question.type);
 					question.preview = false;
 					return QuestionHelper.writeQuestionFile(question);
 				} else {
@@ -116,7 +115,7 @@ module.exports = {
 				helper.copyFolderQuestion(originFolderRoute, copyFolderRoute);
 				var originalData = JSON.stringify(question);
 				var modifiedData = helper.updateImagesUrls(originalData);
-				var data = "var question = " + modifiedData + "; question = JSON.parse(question);window.question = window.question || question;";
+				var data = "var question = " + modifiedData + ";window.question = window.question || question;";
 				var metadata = question.metadata;
 				fs.writeFile(scormQuestionDataRoute, data, function (err) {
 					if (err) {
@@ -176,7 +175,6 @@ saveQuestion(req, res) {
 
 updateQuestion(req, res) {
 	var data = req.body.question;
-	console.log(data);
 	var questionId = req.params.questionid;
 	Question.findByIdAndUpdate(questionId, {$set:data},  {new: true}).then(function(question) {
 		res.status(200).json({

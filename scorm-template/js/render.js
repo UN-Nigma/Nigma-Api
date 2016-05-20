@@ -91,7 +91,10 @@ var Render = {
       var code = Question.answer.code.join("");
       eval(code);
       if(answerError) {
-        setScore(0);
+        if(feedback.length > 0)
+          setScore(0.5);
+        else
+          setScore(0);
         ScormProcessSetValue("cmi.comments_from_lms", feedback);
         ScormProcessSetValue("cmi.core.lesson_status", "failed");
         ScormProcessFinish();
@@ -112,11 +115,15 @@ var Render = {
       }
       var correctValues = mapIds(mapMultipleData.correctValues);
       var commonErrors = mapIds(mapMultipleData.commonErrors);
-      eval(Question.answer.code.join("\n"));
       var feedBack = [];
+      var answerError = true;
+      eval(Question.answer.code.join("\n"));
       if(answerError) {
-        setScore(0);
-        ScormProcessSetValue("cmi.comments_from_lms", feedback.join("\n"));
+        if(feedBack.length > 0)
+          setScore(0.5);
+        else
+          setScore(0);
+        ScormProcessSetValue("cmi.comments_from_lms", feedBack.join("\n"));
         ScormProcessSetValue("cmi.core.lesson_status", "failed");
         ScormProcessFinish();
       } else {

@@ -34,7 +34,7 @@ var Printer = {
 				messages[x] = value.value;
 			}
 		};
-		console.log(answer)
+		
 		auxMap = mapCorrect;
 		answer.correctValues = answer.correctValues || [];
 		answer.correctValues.forEach(eachFunction);
